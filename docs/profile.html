@@ -4,193 +4,278 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="  https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
-  <link rel="website icon" type="png" href="img/amreflogo.png" />
+  <title>User Profile - Amref</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+
+  <link rel="website icon" type="image/png" href="img/amreflogo.png" />
+
   <link rel="stylesheet" href="profile.css">
+
+  <style>
+    body {
+      margin-top: 20px;
+      background-color: #f0fbfc;
+    }
+
+    .main-body {
+      padding: 15px;
+    }
+
+    .card {
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+      border: 0;
+      border-radius: .25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .gutters-sm {
+      margin-right: -8px;
+      margin-left: -8px;
+    }
+
+    .gutters-sm>.col,
+    .gutters-sm>[class*=col-] {
+      padding-right: 8px;
+      padding-left: 8px;
+    }
+
+    .mb-3 {
+      margin-bottom: 1rem !important;
+    }
+
+    .text-secondary {
+      color: #6c757d !important;
+    }
+
+    .navbar {
+      background-color: #f0fbfc;
+    }
+
+    .navbar-brand {
+      padding-left: 2%;
+    }
+
+    @media (min-width: 992px) {
+      #navLinks {
+        margin-left: 20%;
+      }
+    }
+
+    .btn-primary {
+      background-color: #008893;
+      border-color: #008893;
+    }
+
+    .btn-primary:hover {
+      background-color: #006a72;
+      border-color: #006a72;
+    }
+
+    .btn-info {
+      color: #fff;
+      background-color: #0dcaf0;
+      border-color: #0dcaf0;
+    }
+
+    .btn-info:hover {
+      background-color: #0baccc;
+      border-color: #0a9fb9;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top container-fluid" style="background-color: #f0fbfc">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="./index.html" style="padding-left: 2%">
-          <img src="img/amreflogo.png" alt="Logo" width="100" height="100" />
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
-            <li class="nav-item mx-3">
-              <a class="nav-link fs-4" aria-current="page" href="./index.html">Home</a>
-            </li>
-            <li class="nav-item mx-3">
-              <a class="nav-link fs-4" href="./diet.html">Diet</a>
-            </li>
-            <li class="nav-item mx-3">
-              <a class="nav-link fs-4" href="./aboutus.html">About us</a>
-            </li>
-            <li class="nav-item mx-3">
-              <a class="nav-link fs-4 profile" href="./profile.html">Profile</a>
-            </li>
-          </ul>
-          <form class="d-flex" role="search" action="./appointment.html">
-            <button class="btn btn-outline-success btn-lg" type="submit">
-              Book now
-            </button>
-          </form>
-        </div>
+  <nav class="navbar navbar-expand-lg sticky-top container-fluid">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="./index.html"><img src="img/amreflogo.png" alt="Amref Logo" width="100"
+          height="100" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+          class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
+          <li class="nav-item mx-3"><a class="nav-link fs-4" aria-current="page" href="./index.html">Home</a></li>
+          <li class="nav-item mx-3"><a class="nav-link fs-4" href="./diet.html">Diet</a></li>
+          <li class="nav-item mx-3"><a class="nav-link fs-4" href="./aboutus.html">About us</a></li>
+          <li class="nav-item mx-3"><a class="nav-link fs-4 profile active" href="./profile.html">Profile</a></li>
+        </ul>
+        <form class="d-flex" role="search" action="./appointment.html"><button class="btn btn-primary btn-lg"
+            type="submit">Book now</button></form>
       </div>
-    </nav>
-    <div class="container">
-      <div class="main-body">
-        <div class="row gutters-sm">
-          <div class="col-md-4 mb-3">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
-                    width="150">
-                  <div class="mt-3">
-                    <h4 class="name">Steve Amani</h4>
-                  </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="main-body">
+      <div id="profile-status" class="alert alert-warning" role="alert" style="display: none;">
+      </div>
+
+      <div class="row gutters-sm">
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User Profile Picture"
+                  class="rounded-circle" width="150">
+                <div class="mt-3">
+                  <h4 class="name">N/A</h4>
+                  <p class="text-secondary mb-1 email-display"></p>
+                  <button id="logoutButton" class="btn btn-outline-danger btn-sm mt-2">Log Out</button>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-8">
-            <div class="card mb-3">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Full Name</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary name1">
-                    steven Amani
-                  </div>
+        </div>
+
+        <div class="col-md-8">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="row mb-2">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Full Name</h6>
                 </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Email</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary email">
-                    23@gmail.com
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Phone</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary phno">
-                    07454656664
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Gender</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary gender">
-                    male
-                  </div>
-                </div>
-                <hr>
+                <div class="col-sm-9 text-secondary name1">N/A</div>
               </div>
+              <hr>
+              <div class="row mb-2">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary email">N/A</div>
+              </div>
+              <hr>
+              <div class="row mb-2">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Phone</h6>
+                </div>
+                <div class="col-sm-9 text-secondary phno">N/A</div>
+              </div>
+              <hr>
+              <div class="row mb-2">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Gender</h6>
+                </div>
+                <div class="col-sm-9 text-secondary gender">N/A</div>
+              </div>
+              <hr>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // --- Constants ---
+      const LOGGED_IN_EMAIL_KEY = 'loggedInUserEmail'; // Key for storing the logged-in user's email
+      const ALL_USERS_KEY = 'users'; // Key for the object containing all user data
 
+      // --- DOM Element References ---
+      const nameElement = document.querySelector(".name");
+      const name1Element = document.querySelector(".name1");
+      const emailElement = document.querySelector(".email");
+      const phoneElement = document.querySelector(".phno");
+      const genderElement = document.querySelector(".gender");
+      const emailDisplayElement = document.querySelector(".email-display");
+      const profileStatusDiv = document.getElementById("profile-status");
+      const logoutButton = document.getElementById("logoutButton");
 
-
-
-
-
-
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-      import {
-        getAuth,
-        createUserWithEmailAndPassword,
-        signInWithEmailAndPassword,
-      } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
-      import {
-        getDatabase,
-        ref,
-        get,
-        set,
-        child,
-        update,
-        remove,
-      } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-
-      const firebaseConfig = {
-      apiKey: "AIzaSyCA8b3ITXyqdoPA7atyKoboLAOTVSaRvQk",
-      authDomain: "pro-Amref .firebaseapp.com",
-      databaseURL: "https://pro-Amref -default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "pro-Amref ",
-      storageBucket: "pro-Amref .appspot.com",
-      messagingSenderId: "709118952812",
-      appId: "1:709118952812:web:53d0ce620960a07b22df49",
-      measurementId: "G-CX4WZMGEYS"
-    };
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const db = getDatabase();
-
-      function GetData() {
-        const dbref = ref(db);
-
-        get(child(dbref, "people/" + "Name"))
-          .then((snapshot) => {
-            if (snapshot.exists()) {
-              get(child(dbref, "user/" + snapshot.val().Name))
-                .then((snapshot) => {
-                  if (snapshot.exists()) {
-                    const name = snapshot.val().Name;
-                    const email = snapshot.val().Email;
-                    const phno = snapshot.val().Phone;
-                    const gen = snapshot.val().Gender;
-                    document.querySelector(".name").innerHTML = name;
-                    document.querySelector(".name1").innerHTML = name;
-                    document.querySelector(".email").innerHTML = email;
-                    document.querySelector(".phno").innerHTML = phno;
-                    document.querySelector(".gender").innerHTML = gen;
-                     console.log(add);
-                  } else {
-                    alert("No data found");
-                  }
-                })
-                .catch((error) => {
-                  alert(error);
-                });
-            } else {
-              alert("No data found");
-            }
-          })
-          .catch((error) => {
-            alert(error);
-          });
+      // --- Function to Show Status Messages ---
+      function showStatus(message, type = 'warning') {
+        if (profileStatusDiv) {
+          profileStatusDiv.textContent = message;
+          profileStatusDiv.className = `alert alert-${type}`; // Set class based on type
+          profileStatusDiv.style.display = 'block';
+        }
+        console.warn(message); // Also log to console
       }
-      GetData();
 
+      // --- Function to Load and Display Data ---
+      function displayProfileData() {
+        console.log("Loading profile...");
+        profileStatusDiv.style.display = 'none'; // Hide status initially
 
-    </script>
+        const loggedInEmail = localStorage.getItem(LOGGED_IN_EMAIL_KEY);
 
+        if (!loggedInEmail) {
+          showStatus("Not logged in. Please log in to view your profile.", "warning");
+          // Optionally redirect to login page: window.location.href = './signin.html';
+          // Set default display values
+          if (nameElement) nameElement.textContent = 'N/A';
+          if (name1Element) name1Element.textContent = 'N/A';
+          if (emailElement) emailElement.textContent = 'N/A';
+          if (phoneElement) phoneElement.textContent = 'N/A';
+          if (genderElement) genderElement.textContent = 'N/A';
+          if (emailDisplayElement) emailDisplayElement.textContent = '';
+          return; // Stop execution if not logged in
+        }
 
+        console.log(`Logged in as: ${loggedInEmail}`);
 
+        // --- SECURITY WARNING ---
+        // The 'users' object likely contains plain text passwords if based on the signin script.
+        // This is highly insecure and should be addressed in your signup/storage logic.
+        // --- END SECURITY WARNING ---
+        const allUsersString = localStorage.getItem(ALL_USERS_KEY);
+        const allUsers = allUsersString ? JSON.parse(allUsersString) : {};
 
+        const currentUserData = allUsers[loggedInEmail];
 
+        if (currentUserData) {
+          console.log("User profile data found:", currentUserData);
+          // Update HTML elements
+          if (nameElement) nameElement.textContent = currentUserData.Name || 'N/A';
+          if (name1Element) name1Element.textContent = currentUserData.Name || 'N/A';
+          if (emailElement) emailElement.textContent = currentUserData.Email || loggedInEmail; // Use stored email as fallback
+          if (phoneElement) phoneElement.textContent = currentUserData.Phone || 'N/A';
+          if (genderElement) genderElement.textContent = currentUserData.Gender || 'N/A';
+          if (emailDisplayElement) emailDisplayElement.textContent = currentUserData.Email || loggedInEmail;
+        } else {
+          // Logged in email found, but no corresponding data in 'users' object
+          showStatus(`Profile data not found for ${loggedInEmail}. Data might be missing or corrupted.`, "danger");
+          // Set default display values
+          if (nameElement) nameElement.textContent = 'Error';
+          if (name1Element) name1Element.textContent = 'Error';
+          if (emailElement) emailElement.textContent = loggedInEmail; // Show email at least
+          if (phoneElement) phoneElement.textContent = 'Error';
+          if (genderElement) genderElement.textContent = 'Error';
+          if (emailDisplayElement) emailDisplayElement.textContent = loggedInEmail;
+        }
+      }
 
+      // --- Logout Functionality ---
+      function logout() {
+        console.log("Logging out...");
+        // Remove the key indicating the logged-in user
+        localStorage.removeItem(LOGGED_IN_EMAIL_KEY);
+        console.log(`Removed item: ${LOGGED_IN_EMAIL_KEY}`);
 
+        // Optional: Clear other session-related data if needed, but generally avoid clearing ALL_USERS_KEY on logout
+
+        alert("You have been logged out.");
+        window.location.href = './index.html'; // Redirect after logout
+      }
+
+      // --- Event Listeners ---
+      if (logoutButton) {
+        logoutButton.addEventListener('click', logout);
+      } else {
+        console.error("Logout button not found");
+      }
+
+      // --- Initial Load ---
+      displayProfileData();
+
+    }); // End DOMContentLoaded
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

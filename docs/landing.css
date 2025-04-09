@@ -26,51 +26,6 @@ body {
 }
 
 /* Loader Styles */
-.loader {
-    width: 96px;
-    height: 48px;
-    box-sizing: content-box; /* Note: content-box means width/height is content only */
-    background: #FFF;
-    border-color: #008893;
-    border-style: solid;
-    border-width: 2px 2px 50px 2px; /* Creates the half-filled effect */
-    border-radius: 100%;
-    position: fixed; /* Changed from absolute for viewport centering */
-    top: 50%;     /* Use top/left 50% */
-    left: 50%;
-    transform: translate(-50%, -50%); /* Add transform for perfect centering */
-    z-index: 9999; /* Ensure loader is on top */
-    animation: 3s yinYang linear infinite;
-}
-
-.loader:before {
-    content: "";
-    position: absolute;
-    /* Center the pseudo-element relative to the main loader shape */
-    top: 25%; /* Adjust based on border-width */
-    left: 0;
-    transform: translateY(-50%); /* Vertical centering fine-tune */
-    background: #FFF;
-    border: 18px solid #008893;
-    border-radius: 100%;
-    width: 12px;
-    height: 12px;
-    box-sizing: content-box;
-}
-
-.loader:after {
-    content: "";
-    position: absolute;
-    top: 25%; /* Adjust based on border-width */
-    left: 50%;
-    transform: translateY(-50%);
-    background: #008893;
-    border: 18px solid #FFF;
-    border-radius: 100%;
-    width: 12px;
-    height: 12px;
-    box-sizing: content-box;
-}
 
 @keyframes yinYang {
     100% { transform: translate(-50%, -50%) rotate(360deg); } /* Include translate in animation */
