@@ -1,243 +1,247 @@
-/* loader */
+/* Global Settings & Font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Applying Roboto globally as per the last rule */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300; /* Default font weight */
+    text-decoration: none;
+}
+
+html, body {
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+body {
+    background-color: #f0fbfc;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure footer can stick to bottom if content is short */
+}
+
+/* Ensure page content pushes footer down */
+.page {
+    flex-grow: 1;
+}
+
+/* Loader Styles */
 .loader {
     width: 96px;
-    box-sizing: content-box;
     height: 48px;
+    box-sizing: content-box; /* Note: content-box means width/height is content only */
     background: #FFF;
     border-color: #008893;
     border-style: solid;
-    border-width: 2px 2px 50px 2px;
+    border-width: 2px 2px 50px 2px; /* Creates the half-filled effect */
     border-radius: 100%;
-    position: absolute;
-    bottom : 50%;
-    left : 50%;
+    position: fixed; /* Changed from absolute for viewport centering */
+    top: 50%;     /* Use top/left 50% */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Add transform for perfect centering */
+    z-index: 9999; /* Ensure loader is on top */
     animation: 3s yinYang linear infinite;
-  }
-  .loader:before {
+}
+
+.loader:before {
     content: "";
     position: absolute;
-    top: 50%;
+    /* Center the pseudo-element relative to the main loader shape */
+    top: 25%; /* Adjust based on border-width */
     left: 0;
+    transform: translateY(-50%); /* Vertical centering fine-tune */
     background: #FFF;
     border: 18px solid #008893;
     border-radius: 100%;
     width: 12px;
     height: 12px;
     box-sizing: content-box;
-  }
-  .loader:after {
+}
+
+.loader:after {
     content: "";
     position: absolute;
-    top: 50%;
+    top: 25%; /* Adjust based on border-width */
     left: 50%;
+    transform: translateY(-50%);
     background: #008893;
     border: 18px solid #FFF;
     border-radius: 100%;
     width: 12px;
     height: 12px;
     box-sizing: content-box;
-  }
-  @keyframes yinYang {
-    100%{transform: rotate(360deg)}
-  }
-
-
-
-
-
-body {
-    background-color: #f0fbfc;
-    display: flex;
-    flex-direction: column;
 }
 
-.txt-1 {
-    font-weight: bold;
-    font-size: 3em;
-    margin-top: 0.8em;
+@keyframes yinYang {
+    100% { transform: translate(-50%, -50%) rotate(360deg); } /* Include translate in animation */
+}
 
+/* Typography */
+.txt-1 {
+    font-weight: bold; /* Consider using 700 */
+    font-size: 2.8em;  /* Base size for large screens */
+    margin-top: 0.8em;
+    line-height: 1.2;
 }
 
 .txt-2 {
-    font-weight: 100px;
-    font-size: 3em;
-    margin-top: -0.4em;
+    /* font-weight: 100px; This is invalid, use numerical weights like 100, 300, 400 */
+    font-weight: 300;
+    font-size: 2.5em; /* Base size */
+    margin-top: -0.2em; /* Adjusted margin */
+    line-height: 1.2;
 }
 
-.row {
-    margin-top: 0.6em;
+/* Card Styles */
+.card {
+    border: none; /* Remove default card border if needed */
 }
 
 .card-body {
-    background-color: #f0fbfc;
-    border-style: none;
+    background-color: #f0fbfc; /* Match body background */
+    /* border-style: none; Already handled by .card */
+}
+
+#bld { /* Style for bold text within cards or elsewhere */
+    font-weight: 700; /* Use standard weight value */
 }
 
 .col1,
 .col2,
 .col3 {
-    margin-top: 1.5%;
+    margin-top: 1.5rem; /* Use rem for better scaling, adjust value as needed */
 }
 
+/* Bottom Banner Styles */
 .bottom {
     background-color: #008893;
+    margin-top: 4%;
+    padding: 3rem 0; /* Add vertical padding */
 }
 
-.img {
+.bottom .container-fluid { /* Overriding the general .container-fluid flex settings */
+    display: block; /* Let content flow normally */
+    text-align: center;
+}
+
+.bottom .img {
     height: auto;
-    max-width: 100%; /* Ensures responsiveness */
-    display: block; /* Eliminates extra spacing */
-    margin: 0 auto; /* Centers the image */
+    max-width: 80%; /* Adjust as needed, ensure it doesn't get too large */
+    display: block;
+    margin: 1.5rem auto 0; /* Center and add top margin */
 }
 
-.container-fluid {
+/* General Container Override - Remove if causing issues */
+/* This rule might be too broad */
+/* .container-fluid {
     display: flex;
     justify-content: center;
     align-items: center;
+} */
+
+
+/* FAQ Accordion Styles */
+.faq {
+    margin-top: 3rem; /* Increase top margin */
+    padding-bottom: 3rem; /* Add bottom padding */
 }
 
-.space {
-    margin-top: 2%;
+.boxaccordion {
+    /* max-width: 800px; Applied inline in HTML, can be moved here */
 }
 
-.containerwidth {
+.containerwidth { /* Consider removing if not needed */
     width: 100%;
 }
 
-.wrapper {
+.wrapper { /* FAQ item container */
     background-color: #ffffff;
-    padding: 10px 20px;
-    margin-bottom: 20px;
+    /* padding: 10px 20px; Padding is handled by button/content now */
+    margin-bottom: 10px; /* Reduce space between items */
     border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Optional subtle shadow */
+    overflow: hidden; /* Keep content contained */
 }
 
-.toggle,
-.content {
-    font-family: "Poppins", sans-serif;
-}
-
-.toggle {
+.toggle { /* FAQ button */
     width: 100%;
-    background-color: transparent;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    background-color: #ffffff; /* Match wrapper */
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 1rem; /* Responsive font size */
     color: #111130;
-    font-weight: 600;
+    font-weight: 600; /* Bold toggle text */
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 10px 0;
+    padding: 15px 20px; /* Adjust padding */
+    text-align: left;
+}
+.toggle .icon {
+    transition: transform 0.3s ease; /* Smooth icon rotation */
+}
+.toggle.active .icon { /* Add .active class via JS when open */
+     transform: rotate(180deg);
 }
 
-.content {
-    position: relative;
-    font-size: 14px;
+
+.content { /* FAQ content area */
+    font-size: 0.95rem;
+    color: #333;
     text-align: justify;
-    line-height: 30px;
-    height: 0;
+    line-height: 1.6;
+    padding: 0 20px 15px 20px; /* Padding only when open */
+    max-height: 0; /* Use max-height for transition */
     overflow: hidden;
-    -webkit-transition: all 1s;
-    -o-transition: all 1s;
-    transition: all 1s;
-}
-#bld{
-    font-weight: 600;
-}
-.bottom{
-    margin-top: 4%;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Transition height and padding */
 }
 
-.faq {
-    margin-top: 1.5%;
+.content.open { /* Add .open class via JS */
+    max-height: 500px; /* Set a sufficient max-height */
+    /* padding applied already, transition handles it */
 }
 
-@media (max-width: 576px) {}
 
-@media (min-width: 576px) {}
-
-@media (min-width: 768px) {}
-
-@media (min-width: 992px) {
-    #navLinks {
-        margin-left: 20%;
-    }
-
-    #carouselExampleFade {
-        height: 80%;
-        width: 80%;
-        margin-left: 8.5%;
-        margin-top: 39px;
-    }
-
-    #carouselExampleFade img {
-        border-radius: 2em;
-    }
-
-    .row {
-        margin-left: 10.5%;
-        margin-right: 8.5%;
-    }
-
-    .col1,
-    .col2,
-    .col3 {
-        margin-top: 0%;
-    }
-
-
-}
-
-/* footer */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-}
-
+/* Footer Styles */
 footer {
     width: 100%;
-    position: relative;
-    bottom: 0;
-    left: 0;
+    /* position: relative; Not needed if using flexbox for body */
     background: #313232;
+    color: #fff; /* Default text color in footer */
+    margin-top: auto; /* Pushes footer to bottom with flex body */
 }
 
 footer .content-f {
     max-width: 1350px;
     margin: auto;
-    padding: 20px;
+    padding: 30px 20px; /* Increase padding */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
 footer .content-f p,
-a {
-    color: #fff;
+footer .content-f a { /* Ensure links inherit color unless overridden */
+    color: #d9d9d9; /* Lighter grey for text/links */
+    font-size: 0.95rem;
+}
+footer .content-f a:hover {
+    color: #008893; /* Hover color */
+    text-decoration: none;
 }
 
 footer .content-f .box-f {
-    width: 33%;
+    width: 32%; /* Adjust width slightly for spacing */
+    margin-bottom: 20px; /* Add bottom margin for wrapped items */
     transition: all 0.4s ease;
 }
 
 footer .content-f .topic {
-    font-size: 22px;
+    font-size: 1.25rem; /* Adjust size */
     font-weight: 600;
     color: #fff;
     margin-bottom: 16px;
-
 }
 
 footer .content-f p {
@@ -249,18 +253,21 @@ footer .content-f .lower .topic {
 }
 
 footer .content-f .lower i {
-    padding-right: 16px;
+    padding-right: 10px; /* Reduce icon padding */
+    color: #008893; /* Color the icons */
 }
 
 footer .content-f .middle {
-    padding-left: 80px;
+   /* padding-left: 80px; Spacing handled by flex justify */
 }
 
 footer .content-f .middle a {
-    line-height: 32px;
+    display: block; /* Make links block for easier clicking */
+    line-height: 1.8; /* Adjust line height */
 }
 
-footer .content-f .right input[type="text"] {
+footer .content-f .right input[type="email"], /* Use type="email" */
+footer .content-f .right input[type="text"] { /* Keep text for fallback */
     height: 45px;
     width: 100%;
     outline: none;
@@ -268,110 +275,215 @@ footer .content-f .right input[type="text"] {
     background: #232121;
     border-radius: 5px;
     padding-left: 10px;
-    font-size: 17px;
-    border: 2px solid #222222;
+    font-size: 1rem;
+    border: 1px solid #444; /* Subtle border */
+    margin-bottom: 10px; /* Space below input */
 }
 
-footer .content-f .right input[type="submit"] {
+footer .content-f .right input[type="submit"],
+footer .content-f .right button[type="submit"] { /* Target button too */
     height: 42px;
     width: 100%;
-    font-size: 18px;
-    color: #d9d9d9;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
     background: #008893;
     outline: none;
     border-radius: 5px;
     letter-spacing: 1px;
     cursor: pointer;
-    margin-top: 12px;
-    border: 2px solid #008893;
+    /* margin-top: 12px; Use margin on input instead */
+    border: 1px solid #008893;
     transition: all 0.3s ease-in-out;
 }
 
-.content-f .right input[type="submit"]:hover {
-    background: none;
-    color: #008893;
+footer .content-f .right input[type="submit"]:hover,
+footer .content-f .right button[type="submit"]:hover {
+    background: #006a72; /* Darken hover */
+    border-color: #006a72;
+    color: #fff;
+}
+
+footer .content-f .media-icons {
+    margin-top: 20px; /* Space above icons */
 }
 
 footer .content-f .media-icons a {
-    font-size: 16px;
-    height: 45px;
-    width: 45px;
-    display: inline-block;
+    font-size: 1rem; /* Icon wrapper size */
+    height: 40px;
+    width: 40px;
+    display: inline-flex; /* Use flex for centering */
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    line-height: 43px;
+    /* line-height: 43px; Flex handles centering */
     border-radius: 5px;
-    border: 2px solid none;
-    margin: 30px 5px 0 0;
+    /* border: 2px solid none; */
+    margin-right: 8px; /* Space between icons */
     transition: all 0.3s ease;
+    background-color: #444; /* Icon background */
 }
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    background-color: #008893 !important;
-    border-color: #008893 !important;
+footer .content-f .media-icons a img {
+    max-width: 60%; /* Control image size inside link */
+    height: auto;
 }
-.btn-outline-success, .btn-outline-success:hover, .btn-outline-success:active, .btn-outline-success:visited {
-    background-color: #008893 !important;
-    border-color: #008893 !important;
-    color: #fff !important;
+
+footer .content-f .media-icons a:hover {
+    background-color: #008893; /* Highlight background on hover */
+    /* border-color: #008893; */
 }
-.content-f .media-icons a:hover {
-    border-color: #008893;
-}
-*{
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-}
+
 footer .bottom-f {
     width: 100%;
-    text-align: right;
+    text-align: center; /* Center copyright */
     color: #d9d9d9;
-    padding: 0 40px 5px 0;
+    padding: 15px 20px; /* Adjust padding */
+    border-top: 1px solid #444; /* Separator line */
+    font-size: 0.9rem;
 }
 
 footer .bottom-f a {
     color: #008893;
+    font-weight: 600;
 }
 
-footer a {
-    transition: all 0.3s ease;
+
+/* Bootstrap Button Overrides */
+/* Use with caution - increases specificity */
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-primary:focus {
+    background-color: #008893 !important;
+    border-color: #008893 !important;
+    color: #fff !important;
+    box-shadow: none !important; /* Remove default focus shadow if desired */
 }
 
-footer a:hover {
-    color: #008893;
+.btn-outline-success, .btn-outline-success:hover, .btn-outline-success:active, .btn-outline-success:visited, .btn-outline-success:focus {
+    background-color: #008893 !important; /* Make it solid */
+    border-color: #008893 !important;
+    color: #fff !important;
+    box-shadow: none !important;
 }
+/* Add a distinct hover for the outline button if needed */
+/* .btn-outline-success:hover {
+     background-color: #006a72 !important;
+     border-color: #006a72 !important;
+} */
 
-@media (max-width:992px) {
+
+/* ============================== */
+/* Responsive Styles */
+/* ============================== */
+
+/* Medium Devices (Tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    #navLinks {
+        margin-left: 0; /* Reset margin */
+        text-align: center; /* Center links when collapsed */
+    }
+    .navbar-nav .nav-item {
+         margin: 0.5rem 0; /* Adjust spacing in collapsed menu */
+    }
+
+    #carouselExampleFade {
+        height: auto; /* Reset fixed height */
+        width: 100%; /* Full width */
+        margin-left: 0; /* Reset margin */
+        margin-top: 0; /* Reset margin */
+    }
+     #carouselExampleFade img {
+        border-radius: 0; /* Remove border-radius */
+    }
+
+    .row { /* Card row */
+        margin-left: 0; /* Reset margin */
+        margin-right: 0; /* Reset margin */
+    }
+
+    .txt-1 {
+        font-size: 2.2em; /* Reduce font size */
+    }
+    .txt-2 {
+        font-size: 2em; /* Reduce font size */
+    }
+
+    footer .content-f .box-f { /* Footer columns */
+        width: 48%; /* Two columns */
+    }
     footer .content-f .middle {
-        padding-left: 50px;
+        padding-left: 0; /* Reset padding */
     }
 }
 
-@media (max-width:768px) {
-    footer .content-f .box {
-        width: 50%;
+/* Small Devices (Landscape Phones, less than 768px) */
+@media (max-width: 767.98px) {
+    .txt-1 {
+        font-size: 1.8em;
+        margin-top: 1em;
+    }
+    .txt-2 {
+        font-size: 1.6em;
     }
 
-    .content-f .right {
-        margin-top: 40px;
-    }
-}
-
-@media (max-width:576px) {
-    footer {
-        position: relative;
+    .card-text {
+        font-size: 0.9rem; /* Slightly smaller card text */
     }
 
-    footer .content-f .box-f {
-        width: 100%;
+    .bottom .txt-1 {
+         font-size: 1.6em;
+    }
+     .bottom .txt-2 {
+         font-size: 1.3em;
+    }
+     .bottom .img {
+        max-width: 90%;
+    }
+
+    .faq {
+        margin-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .toggle { /* FAQ button */
+        font-size: 0.95rem;
+    }
+    .content { /* FAQ content */
+        font-size: 0.9rem;
+    }
+
+    footer .content-f .box-f { /* Footer columns */
+        width: 100%; /* Stack columns */
         margin-top: 30px;
     }
-
-    footer .content-f .middle {
-        padding-left: 0;
+    footer .content-f .box-f:first-child {
+         margin-top: 0; /* Remove top margin for first stacked item */
+    }
+    .content-f .right { /* Footer right column */
+        margin-top: 30px; /* Ensure consistent margin */
+    }
+     footer .bottom-f {
+        text-align: center; /* Center copyright */
+        padding: 10px 15px;
     }
 }
 
-a{
-    text-decoration: none;
+/* Extra Small Devices (Portrait Phones, less than 576px) */
+@media (max-width: 575.98px) {
+     /* Further reduce font sizes if needed */
+    .txt-1 {
+        font-size: 1.6em;
+    }
+    .txt-2 {
+        font-size: 1.4em;
+        margin-top: 0;
+    }
+    .btn-lg { /* Make buttons slightly smaller */
+        padding: 0.4rem 0.8rem;
+        font-size: 1rem;
+    }
+
+     .bottom .txt-1 {
+         font-size: 1.4em;
+    }
+     .bottom .txt-2 {
+         font-size: 1.1em;
+    }
 }
-
-
