@@ -1,24 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prescription</title>
-    <link
-      rel="stylesheet"
-      href="  https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="website icon" type="png"  href="img/amreflogo.png"> 
-    <link rel="stylesheet" href="prescription.css" />
-  </head>
-  <body>
-    <div class="container page"></div>
-    <div class="text-center">
-    <button type="button" class="btn btn-primary btn-lg">Download</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prescription Details - Amref</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <link rel="website icon" type="image/png" href="img/amreflogo.png">
+
+  <link rel="stylesheet" href="prescription.css" />
+
+  <link rel="stylesheet" href="print-prescription.css" media="print">
+
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg sticky-top bg-light shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="./index.html">
+        <img src="img/amreflogo.png" alt="Amref Logo" width="80" height="80">
+      </a>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-md-4">
+        <li class="nav-item mx-2"><a class="nav-link" href="./index.html">Home</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="./profile.html">Profile</a></li>
+      </ul>
     </div>
-  </body>
+  </nav>
+
+  <div class="container page py-4">
+
+    <div id="statusMessage" class="alert" role="alert" style="display: none;"></div>
+
+    <div id="prescriptionDetails" class="prescription-card" style="display: none;">
+      <div class="prescription-header">
+        <h2 class="mb-3">Medical Prescription</h2>
+        <p><strong>Clinic/Hospital:</strong> <span id="clinicName">Amref Health Services</span></p>
+        <p><strong>Contact:</strong> <span id="clinicContact">+254 123 456789</span></p>
+      </div>
+
+      <hr>
+
+      <div class="row mb-4 prescription-section">
+        <div class="col-md-6">
+          <h5>Patient Information</h5>
+          <p><strong>Name:</strong> <span id="patientName">Loading...</span></p>
+          <p><strong>Date of Birth:</strong> <span id="patientDOB">Loading...</span></p>
+          <p><strong>Contact:</strong> <span id="patientContact">Loading...</span></p>
+        </div>
+        <div class="col-md-6">
+          <h5>Prescriber Information</h5>
+          <p><strong>Doctor:</strong> <span id="doctorName">Loading...</span></p>
+          <p><strong>Credentials:</strong> <span id="doctorCredentials">MD, General Practice</span></p>
+          <p><strong>Date Issued:</strong> <span id="dateIssued">Loading...</span></p>
+        </div>
+      </div>
+
+      <div class="prescription-section mb-4">
+        <h5>Medications Prescribed (Rx)</h5>
+        <div id="medicationList">
+          <p id="medicationPlaceholder">Loading medications...</p>
+        </div>
+      </div>
+
+      <div class="prescription-section mb-4">
+        <h5>Additional Notes</h5>
+        <p id="additionalNotes">Loading...</p>
+      </div>
+
+
+      <div class="prescription-footer mt-5">
+        <p>_________________________</p>
+        <p><strong>Prescriber's Signature</strong></p>
+        <p>Prescription ID: <span id="prescriptionId">Loading...</span></p>
+      </div>
+
+    </div>
+    <div class="text-center mt-4 mb-5">
+      <button type="button" id="downloadButton" class="btn btn-primary btn-lg" >
+        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"
+          style="display: none;"></span>
+        Download Prescription
+      </button>
+      <button type="button" id="printButton" class="btn btn-secondary btn-lg ms-2" >
+        Print Prescription
+      </button>
+    </div>
+
+  </div>
+  <div class="footer-placeholder mt-5 p-4 bg-dark text-light text-center">
+    Your Health is Our Concern &copy; 2025 Amref
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      const prescriptionDetailsDiv = document.getElementById('prescriptionDetails');
+      const statusMessageDiv = document.getElementById('statusMessage');
+      const downloadButton = document.getElementById('downloadButton');
+      const printButton = document.getElementById('printButton');
+      const loadingSpinner = downloadButton.querySelector('.spinner-border');
+
+      // --- 1. Get Prescription ID from URL ---
+      const urlParams = new URLSearchParams(window.location.search);
+      const prescriptionId = urlParams.get('id'); // Example: prescription.html?id=RX12345
+      console.log("Prescription ID from URL:", prescriptionId);
+
+      // --- Function to display status messages ---
+      function showStatus(message, type = 'info') {
+        console.log(`Status [${type}]: ${message}`); // Log status
+        statusMessageDiv.textContent = message;
+        statusMessageDiv.className = `alert alert-${type}`;
+        statusMessageDiv.style.display = 'block';
+      }
+
+      // --- Function to populate HTML with data ---
+      function displayPrescriptionData(data) {
+        console.log("Populating HTML with data:", data);
+        try {
+          // Populate header/footer
+          document.getElementById('clinicName').textContent = data.clinicName || 'N/A';
+          document.getElementById('clinicContact').textContent = data.clinicContact || 'N/A';
+          document.getElementById('dateIssued').textContent = data.dateIssued ? new Date(data.dateIssued.seconds * 1000).toLocaleDateString() : 'N/A'; // Assuming Firebase Timestamp
+          document.getElementById('prescriptionId').textContent = data.id || prescriptionId || 'N/A'; // Use fetched ID or URL param
+
+          // Populate patient/doctor info
+          document.getElementById('patientName').textContent = data.patientName || 'N/A';
+          document.getElementById('patientDOB').textContent = data.patientDOB || 'N/A';
+          document.getElementById('patientContact').textContent = data.patientContact || 'N/A';
+          document.getElementById('doctorName').textContent = data.doctorName || 'N/A';
+          document.getElementById('doctorCredentials').textContent = data.doctorCredentials || 'N/A';
+
+          // Populate Medications
+          const medListDiv = document.getElementById('medicationList');
+          const medPlaceholder = document.getElementById('medicationPlaceholder');
+          medListDiv.innerHTML = ''; // Clear placeholder/previous data
+
+          if (data.medications && data.medications.length > 0) {
+            data.medications.forEach(med => {
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'medication-item';
+              itemDiv.innerHTML = `
+                            <p class="mb-1"><strong>Medication:</strong> <span class="med-name">${med.name || 'N/A'}</span></p>
+                            <p class="mb-1"><strong>Dosage:</strong> <span class="med-dosage">${med.dosage || 'N/A'}</span></p>
+                            <p class="mb-1"><strong>Frequency:</strong> <span class="med-frequency">${med.frequency || 'N/A'}</span></p>
+                            <p class="mb-1"><strong>Duration:</strong> <span class="med-duration">${med.duration || 'N/A'}</span></p>
+                            ${med.instructions ? `<p class="mb-0"><strong>Instructions:</strong> <span class="med-instructions">${med.instructions}</span></p>` : ''}
+                        `;
+              medListDiv.appendChild(itemDiv);
+            });
+          } else {
+            medListDiv.innerHTML = '<p>No medications listed.</p>';
+          }
+
+          // Populate Notes
+          document.getElementById('additionalNotes').textContent = data.additionalNotes || 'None';
+
+          // Show the populated card and enable buttons
+          prescriptionDetailsDiv.style.display = 'block';
+
+          console.log("Enabling buttons..."); // DEBUG
+          downloadButton.disabled = false;
+          printButton.disabled = false;
+          console.log("Buttons enabled."); // DEBUG
+
+        } catch (error) {
+          console.error("Error displaying prescription data:", error);
+          showStatus('An error occurred while displaying the data.', 'danger');
+        }
+      }
+
+
+      // --- 2. Fetch Prescription Data (Placeholder - Replace with your actual fetch logic) ---
+      async function fetchPrescriptionData(id) {
+        showStatus('Loading prescription data...', 'info');
+        loadingSpinner.style.display = 'inline-block'; // Show spinner
+        downloadButton.disabled = true;
+        printButton.disabled = true;
+        console.log("Fetching data for ID:", id); // DEBUG
+
+        // ** REPLACE THIS WITH YOUR ACTUAL FIREBASE/API CALL **
+
+        // ** Placeholder Simulation **
+        return new Promise((resolve, reject) => { // Added reject
+          setTimeout(() => {
+            try { // Wrap simulation in try block
+              loadingSpinner.style.display = 'none'; // Hide spinner
+              // Simulate success
+              const mockData = {
+                id: id,
+                clinicName: "Amref Health Demo Clinic",
+                clinicContact: "+254 987 654321",
+                dateIssued: { seconds: Math.floor(Date.now() / 1000) - 86400 }, // Simulate Firebase Timestamp (yesterday)
+                patientName: "Jane Doe",
+                patientDOB: "1990-05-15",
+                patientContact: "+254 777 111222",
+                doctorName: "Dr. Emily Carter",
+                doctorCredentials: "MBChB, Physician",
+                medications: [
+                  { name: "Amoxicillin", dosage: "500mg", frequency: "Every 8 hours", duration: "10 days", instructions: "Take with food." },
+                  { name: "Paracetamol", dosage: "1g", frequency: "Every 6 hours as needed for pain", duration: "5 days" }
+                ],
+                additionalNotes: "Complete the full course of antibiotics. Stay hydrated."
+              };
+              displayPrescriptionData(mockData);
+              showStatus('Data loaded successfully (Mock).', 'success');
+              setTimeout(() => statusMessageDiv.style.display = 'none', 2000);
+              console.log("Mock data fetch complete."); // DEBUG
+              resolve(mockData); // Resolve with data
+
+            } catch (error) {
+              console.error("Error in placeholder simulation:", error);
+              showStatus('Error simulating data fetch.', 'danger');
+              reject(error); // Reject promise on error
+            }
+          }, 1500); // Simulate network delay
+        });
+        // ** End Placeholder Simulation **
+      }
+
+
+      // --- 3. Download Button Logic ---
+      downloadButton.addEventListener('click', () => {
+        console.log("Download button clicked."); // DEBUG
+        // Check if the PDF generation library is available
+        if (typeof html2pdf !== 'undefined') {
+          console.log("html2pdf library found. Starting PDF generation...");
+          const element = document.getElementById('prescriptionDetails');
+          const opt = {
+            margin: 10, // mm
+            filename: `prescription-${prescriptionId || 'details'}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true, logging: true }, // Enable logging for html2canvas
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+          };
+          // Disable button while generating
+          downloadButton.disabled = true;
+          loadingSpinner.style.display = 'inline-block';
+
+          html2pdf().set(opt).from(element).save()
+            .then(() => {
+              console.log("PDF generated successfully.");
+              downloadButton.disabled = false; // Re-enable button
+              loadingSpinner.style.display = 'none';
+            }).catch(err => {
+              console.error("Error generating PDF:", err);
+              showStatus('Failed to generate PDF.', 'danger');
+              downloadButton.disabled = false; // Re-enable button on error
+              loadingSpinner.style.display = 'none';
+            });
+
+        } else {
+          console.error('html2pdf library is not loaded.'); // DEBUG
+          alert('PDF generation feature is currently unavailable. Please ensure the library is loaded.');
+          showStatus('PDF generation library not loaded.', 'danger');
+        }
+      });
+
+      // --- 4. Print Button Logic ---
+      printButton.addEventListener('click', () => {
+        console.log("Print button clicked."); // DEBUG
+        try {
+          window.print(); // Uses browser's print functionality
+          console.log("window.print() called."); // DEBUG
+        } catch (error) {
+          console.error("Error calling window.print():", error); // DEBUG
+          showStatus('Could not open print dialog.', 'danger');
+        }
+      });
+
+      // --- Initial Load Check ---
+      if (prescriptionId) {
+        // ** TODO: Add security check here **
+        fetchPrescriptionData(prescriptionId).catch(err => {
+          // Handle potential errors from the fetch function itself
+          console.error("Fetch Prescription Data failed:", err);
+          showStatus('Failed to load prescription data.', 'danger');
+          loadingSpinner.style.display = 'none'; // Ensure spinner hidden on fetch error
+        });
+      } else {
+        showStatus('No prescription ID provided in the URL. Cannot load data.', 'danger');
+        prescriptionDetailsDiv.style.display = 'none'; // Hide the details card
+        console.log("No prescription ID found in URL."); // DEBUG
+      }
+
+    }); // End DOMContentLoaded
+  </script>
+
+</body>
+
 </html>

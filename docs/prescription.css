@@ -1,27 +1,158 @@
-.page {
-    width: 45%;
-    height: 400px;
-    padding: 50px 40px 20px 40px;
-    margin-top: 10%;
-    background-color: #fff;
-    border-radius: 30px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-  }
-  body{
-      background-color: #f0fbfc;
-  }
-  .btn-primary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-    margin-top:3.5%;
-  }
-  *{
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-   }
-   .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    background-color: #008893 !important;
-    border-color: #008893 !important;
+/* General Page Styles */
+body {
+  background-color: #f8f9fa; /* Light grey background */
+  /* Ensure consistent font application if needed, overriding Bootstrap potentially */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  padding-top: 70px; /* Add padding if using a fixed-top navbar to prevent overlap */
 }
-  
+
+/* Apply base font settings more broadly */
+* {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  box-sizing: border-box; /* Add box-sizing for consistency */
+}
+
+/* Ensure container fills width appropriately */
+.container.page {
+  max-width: 960px; /* Or your preferred max width for content */
+}
+
+/* Prescription Card Layout */
+.prescription-card {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: .375rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, .075);
+  padding: 2rem; /* Default padding */
+}
+
+.prescription-header,
+.prescription-footer {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.prescription-header h2 {
+    font-weight: 400; /* Slightly bolder heading */
+}
+.prescription-footer p {
+    margin-bottom: 0.5rem;
+}
+
+.prescription-section h5 {
+  font-size: 1.1rem; /* Slightly smaller section headings */
+  font-weight: 600; /* Bolder section headings */
+  color: #008893; /* Theme color */
+  margin-top: 1.5rem; /* Space above sections */
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+.prescription-section p {
+    margin-bottom: 0.6rem; /* Consistent paragraph spacing */
+    line-height: 1.6;
+}
+.prescription-section p strong {
+    font-weight: 600; /* Make labels bold */
+    display: inline-block;
+    min-width: 120px; /* Align labels somewhat */
+}
+
+/* Medication List Styling */
+.medication-item {
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.medication-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.medication-item p {
+    margin-bottom: 0.3rem; /* Tighter spacing within med item */
+}
+
+/* Button Styles Override */
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+  background-color: #008893 !important;
+  border-color: #008893 !important;
+  color: #fff !important; /* Ensure text is white */
+  box-shadow: none !important; /* Optional: remove focus shadow */
+}
+
+/* Style for secondary print button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:visited,
+.btn-secondary:focus {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: #fff !important;
+    box-shadow: none !important;
+}
+
+/* Status Message Styling (Uses Bootstrap classes) */
+#statusMessage {
+    margin-top: 1rem;
+}
+
+/* Navbar & Footer Styling (Assumed to be in global CSS or needs adding) */
+/* Example:
+.navbar { ... your consistent navbar styles ... }
+.footer-placeholder { ... your consistent footer styles ... }
+*/
+
+
+/* Print Specific Styles */
+@media print {
+  body {
+    background-color: #fff !important; /* Ensure white background for printing */
+    padding-top: 0 !important; /* Remove padding */
+    font-size: 10pt; /* Adjust base font size for print */
+  }
+
+  /* Hide non-essential elements */
+  .navbar,
+  .btn, /* Hides all buttons */
+  .footer-placeholder,
+  #statusMessage { /* Hide status messages */
+    display: none !important;
+  }
+
+  /* Adjust prescription card for printing */
+  .prescription-card {
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .container.page {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Ensure links are not shown in print unless needed */
+  a[href]:after {
+     /* content: none !important; Optionally hide URL expansion */
+  }
+
+   /* Adjust heading sizes and margins for print */
+   .prescription-header h2 { font-size: 16pt; }
+   .prescription-section h5 { font-size: 12pt; margin-top: 1rem; }
+   p { font-size: 10pt; line-height: 1.4; }
+   hr { display: none; } /* Hide visual separators if not needed */
+
+}
