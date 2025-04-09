@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .checkout-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        button#checkoutButton {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #28a745;
+            color: white;
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        button#checkoutButton:hover {
+            background-color: #1e7e34;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative; /* To position the spinner */
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
+        }
+        .close-button {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .payment-option-button {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+            text-align: left;
+        }
+        .payment-option-button.selected {
+            border-color: #007bff;
+            font-weight: bold;
+        }
+        .payment-details {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .pay-button, .retry-button {
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .pay-button:hover, .retry-button:hover {
+            background-color: #1e7e34;
+        }
+        .retry-button {
+            background-color: #dc3545; /* Red color for retry */
+        }
+        .retry-button:hover {
+            background-color: #c82333;
+        }
+        #mobilePaymentDetails, #creditCardDetails {
+            display: none;
+        }
+        /* Loading Spinner Styles */
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            display: none; /* Hidden by default */
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <h2>Confirm Your Appointment and Checkout</h2>
+        <p>You are about to pay for your appointment.</p>
+        <div class="button-container">
+            <button id="checkoutButton">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Choose Payment Method</h2>
+                <span class="close-button">&times;</span>
+            </div>
+            <div class="payment-options">
+                <button class="payment-option-button" data-payment="safaricom">Safaricom (Kenya)</button>
+                <button class="payment-option-button" data-payment="airtel">Airtel Money (Kenya)</button>
+                <button class="payment-option-button" data-payment="googlepay">Google Pay</button>
+                <button class="payment-option-button" data-payment="paypal">PayPal</button>
+                <button class="payment-option-button" data-payment="creditcard">Credit Card</button>
+                <button class="payment-option-button" data-payment="banktransfer">Bank Transfer</button>
+                <button class="payment-option-button" data-payment="other">Other</button>
+            </div>
+
+            <div id="mobilePaymentDetails" class="payment-details">
+                <h3>Mobile Money Payment</h3>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="text" id="phoneNumber" placeholder="Enter your Safaricom/Airtel phone number">
+                </div>
+                <div class="form-group">
+                    <label for="confirmationNumber">MPESA/Airtel Money Confirmation Code</label>
+                    <input type="text" id="confirmationNumber" placeholder="Enter the confirmation code">
+                </div>
+            </div>
+
+            <div id="creditCardDetails" class="payment-details">
+                <h3>Credit Card Details</h3>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="number" id="cardNumber" placeholder="Enter your card number">
+                </div>
+                <div class="form-group">
+                    <label for="expiryDate">Expiry Date (MM/YY)</label>
+                    <input type="text" id="expiryDate" placeholder="MM/YY">
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="number" id="cvv" placeholder="Enter CVV">
+                </div>
+            </div>
+
+            <div id="otherPaymentDetails" class="payment-details" style="display: none;">
+                <p>You will be redirected to the respective payment gateway after clicking "Pay Now".</p>
+            </div>
+
+            <div class="loading-spinner" id="loadingSpinner"></div>
+            <button id="payButton" class="pay-button">Pay Now</button>
+            <button id="retryButton" class="retry-button" style="display: none;">Retry Payment</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkoutButton = document.getElementById('checkoutButton');
+            const paymentModal = document.getElementById('paymentModal');
+            const closeButton = paymentModal.querySelector('.close-button');
+            const paymentOptionButtons = paymentModal.querySelectorAll('.payment-option-button');
+            const mobilePaymentDetailsDiv = document.getElementById('mobilePaymentDetails');
+            const creditCardDetailsDiv = document.getElementById('creditCardDetails');
+            const otherPaymentDetailsDiv = document.getElementById('otherPaymentDetails');
+            const payButton = document.getElementById('payButton');
+            const retryButton = document.getElementById('retryButton');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            let selectedPaymentMethod = null;
+
+            checkoutButton.addEventListener('click', function() {
+                paymentModal.style.display = "block";
+            });
+
+            closeButton.addEventListener('click', function() {
+                paymentModal.style.display = "none";
+                resetPaymentDetails();
+                showPaymentOptionsAndPayButton(); // Ensure options and pay button are visible on next open
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target == paymentModal) {
+                    paymentModal.style.display = "none";
+                    resetPaymentDetails();
+                    showPaymentOptionsAndPayButton(); // Ensure options and pay button are visible on next open
+                }
+            });
+
+            paymentOptionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    resetPaymentDetails();
+                    selectedPaymentMethod = this.dataset.payment;
+                    paymentOptionButtons.forEach(btn => btn.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    if (selectedPaymentMethod === 'safaricom' || selectedPaymentMethod === 'airtel') {
+                        mobilePaymentDetailsDiv.style.display = "block";
+                        otherPaymentDetailsDiv.style.display = "none";
+                        creditCardDetailsDiv.style.display = "none";
+                    } else if (selectedPaymentMethod === 'creditcard') {
+                        creditCardDetailsDiv.style.display = "block";
+                        mobilePaymentDetailsDiv.style.display = "none";
+                        otherPaymentDetailsDiv.style.display = "none";
+                    } else if (selectedPaymentMethod === 'googlepay' || selectedPaymentMethod === 'paypal' || selectedPaymentMethod === 'banktransfer' || selectedPaymentMethod === 'other') {
+                        otherPaymentDetailsDiv.style.display = "block";
+                        mobilePaymentDetailsDiv.style.display = "none";
+                        creditCardDetailsDiv.style.display = "none";
+                    }
+                });
+            });
+
+            payButton.addEventListener('click', function() {
+                if (!selectedPaymentMethod) {
+                    alert("Please select a payment method.");
+                    return;
+                }
+
+                loadingSpinner.style.display = "block";
+                payButton.disabled = true;
+                hidePaymentOptions(); // Hide payment options during processing
+                retryButton.style.display = "none"; // Ensure retry button is hidden
+
+                // Simulate payment processing with a delay
+                setTimeout(function() {
+                    let paymentSuccessful = false;
+
+                    if (selectedPaymentMethod === 'safaricom' || selectedPaymentMethod === 'airtel') {
+                        const phoneNumber = document.getElementById('phoneNumber').value;
+                        const confirmationNumber = document.getElementById('confirmationNumber').value;
+                        if (phoneNumber.trim() !== '' && confirmationNumber.trim() !== '') {
+                            alert(`Processing mobile money payment for ${phoneNumber} with confirmation: ${confirmationNumber}`);
+                            paymentSuccessful = Math.random() < 0.7; // Simulate success 70% of the time
+                        } else {
+                            alert("Please enter your phone number and confirmation code.");
+                        }
+                    } else if (selectedPaymentMethod === 'creditcard') {
+                        const cardNumber = document.getElementById('cardNumber').value;
+                        const expiryDate = document.getElementById('expiryDate').value;
+                        const cvv = document.getElementById('cvv').value;
+                        if (cardNumber.trim() !== '' && expiryDate.trim() !== '' && cvv.trim() !== '') {
+                            alert(`Processing credit card payment for card ending in ****${cardNumber.slice(-4)}`);
+                            paymentSuccessful = Math.random() < 0.6; // Simulate success 60% of the time
+                        } else {
+                            alert("Please enter all credit card details.");
+                        }
+                    } else {
+                        alert(`Processing payment via ${selectedPaymentMethod}.`);
+                        paymentSuccessful = Math.random() < 0.8; // Simulate success 80% of the time
+                    }
+
+                    loadingSpinner.style.display = "none";
+                    payButton.disabled = false;
+
+                    if (paymentSuccessful) {
+                        alert("Payment successful!");
+                        paymentModal.style.display = "none";
+                        resetPaymentDetails();
+                        showPaymentOptionsAndPayButton();
+
+                        const pendingAppointment = localStorage.getItem('pendingAppointment');
+                        if (pendingAppointment) {
+                            localStorage.removeItem('pendingAppointment');
+                            let confirmedAppointments = JSON.parse(localStorage.getItem('confirmedAppointments') || '[]');
+                            const appointmentData = JSON.parse(pendingAppointment);
+                            confirmedAppointments.push(appointmentData);
+                            localStorage.setItem('confirmedAppointments', JSON.stringify(confirmedAppointments));
+                        } else {
+                            console.log("No pending appointment found, but payment was successful.");
+                            localStorage.setItem('paymentSuccessful', 'true');
+                        }
+                        window.location.href = './dashboard.html';
+                    } else {
+                        alert("Payment failed. Please try again.");
+                        retryButton.style.display = "block";
+                        payButton.style.display = "none";
+                        showPaymentOptions(); // Show payment options again for retry
+                    }
+                }, 2000); // Simulate 2 seconds of processing
+            });
+
+            retryButton.addEventListener('click', function() {
+                retryButton.style.display = "none";
+                payButton.style.display = "block";
+                showPaymentOptions();
+            });
+
+            function resetPaymentDetails() {
+                paymentOptionButtons.forEach(btn => btn.classList.remove('selected'));
+                mobilePaymentDetailsDiv.style.display = "none";
+                creditCardDetailsDiv.style.display = "none";
+                otherPaymentDetailsDiv.style.display = "none";
+                selectedPaymentMethod = null;
+                document.getElementById('phoneNumber').value = '';
+                document.getElementById('confirmationNumber').value = '';
+                document.getElementById('cardNumber').value = '';
+                document.getElementById('expiryDate').value = '';
+                document.getElementById('cvv').value = '';
+            }
+
+            function hidePaymentOptions() {
+                document.querySelector('.payment-options').style.display = 'none';
+            }
+
+            function showPaymentOptions() {
+                document.querySelector('.payment-options').style.display = 'flex';
+            }
+
+            function showPaymentOptionsAndPayButton() {
+                showPaymentOptions();
+                payButton.style.display = 'block';
+                retryButton.style.display = 'none';
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+</body>
+</html>
