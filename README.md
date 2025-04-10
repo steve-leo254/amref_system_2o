@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 <h1>Amref  - The online Amref Solution </h1>
-<img src="docs/img/home.png.png">
-=======
+<p>Your Health IS Our Concern</p>
 <h1>Amref  - The online Telemedicine Solution </h1>
 <img src="docs/img/home.png">
 >>>>>>> f8bd770a5b40283afe7e9555b98b4d97d5e7913a
