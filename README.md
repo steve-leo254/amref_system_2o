@@ -1,6 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <h1>Amref  - The online Amref Solution </h1>
 <img src="docs/img/home.png.png">
+=======
+<h1>Amref  - The online Telemedicine Solution </h1>
+<img src="docs/img/home.png">
+>>>>>>> f8bd770a5b40283afe7e9555b98b4d97d5e7913a
 <h2> Overview 👨‍⚕️</h2>
 
 <p>Amref  is a comprehensive telemedicine website designed to provide patients with convenient access to quality healthcare services from the comfort of their homes. With Amref , patients can connect with licensed doctors through video conferencing and chat, making it easy to receive the medical attention they need without leaving their homes.
@@ -50,7 +55,11 @@ Doctors on Amref  can fill prescriptions and provide medication to patients as n
 <p><b>BACKEND<b><p>
     <li>Google Maps API</li>
      <li>Google Calendar API</li>
+<<<<<<< HEAD
      <li>Pg admin</li>
+=======
+     <li>Pg Admin</li>
+>>>>>>> f8bd770a5b40283afe7e9555b98b4d97d5e7913a
      <li>Dialog Flow API</li>
    <li>Open Weather API </li>
    <li>Video SDK API </li>
@@ -73,10 +82,15 @@ Doctors on Amref  can fill prescriptions and provide medication to patients as n
     <li> Zone - Oregon (us-west1-a)</li>
     <li>IP :<a href="http://35.185.206.120"> 35.185.206.120 </a></li>
       <br> 
-    <img src="docs/img/Screenshot 2023-04-18 at 6.51.47 PM.png">
+<!--     <img src="docs/img/Screenshot 2023-04-18 at 6.51.47 PM.png"> -->
     <h2>Team Members 🧑‍🤝‍🧑</h2>
+<<<<<<< HEAD
    <li>L.S Muthure -  Developer , Cloudline tech solutions ,UI Designer - <a href="https://github.com/steve-leo254">GITHUB</a></li>
 
+=======
+   <li>L.S Muthure -  Developer , Cloud Developer ,UI Designer - <a href="https://github.com/steve-leo254">GITHUB</a></li>
+  \
+>>>>>>> f8bd770a5b40283afe7e9555b98b4d97d5e7913a
         
         
     
