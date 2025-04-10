@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 <h1>Amref  - The online Telemedicine Solution </h1>
-<img src="docs/img/Screenshot 2023-04-18 at 7.13.46 PM.png">
+<img src="docs/img/home.png">
 <h2> Overview 👨‍⚕️</h2>
 
 <p>Amref  is a comprehensive telemedicine website designed to provide patients with convenient access to quality healthcare services from the comfort of their homes. With Amref , patients can connect with licensed doctors through video conferencing and chat, making it easy to receive the medical attention they need without leaving their homes.
@@ -36,7 +36,7 @@ Doctors on Amref  can fill prescriptions and provide medication to patients as n
 <li><ul>End of consultation.<ul>Once the consultation is over, the doctor ends the video conference call, and the patient logs out of the platform.</ul></ul></li>
 <li><ul>Prescription Storage for Future purpose<ul>After the end of consultancy also prescription is stored for a time </ul></ul></li>
 <h2> Documentation 🔗 </h2>
-Link : <h4><a href="https://docs.google.com/document/d/19_XXt9bEmvU4Wv9oCiRHygB8Nxpleh1S39FQWaO7uBQ/edit#">DOCUMENTATION</a></h4>
+
 <h2>Greet our Receptionist 🤖 </h2>
 <a href="https://t.me/Amref 16_bot">CHAT HERE</a>
 <h2>Technologies Used 📱</h2>
@@ -45,11 +45,12 @@ Link : <h4><a href="https://docs.google.com/document/d/19_XXt9bEmvU4Wv9oCiRHygB8
      <li>CSS</li>
      <li>BootStrap</li>
      <li>Java Script</li>
+     <li>Python</li>
     <br>
 <p><b>BACKEND<b><p>
     <li>Google Maps API</li>
      <li>Google Calendar API</li>
-     <li>FIREBASE</li>
+     <li>Pg Admin</li>
      <li>Dialog Flow API</li>
    <li>Open Weather API </li>
    <li>Video SDK API </li>
@@ -73,12 +74,10 @@ Link : <h4><a href="https://docs.google.com/document/d/19_XXt9bEmvU4Wv9oCiRHygB8
     <li> Zone - Oregon (us-west1-a)</li>
     <li>IP :<a href="http://35.185.206.120"> 35.185.206.120 </a></li>
       <br> 
-    <img src="docs/img/Screenshot 2023-04-18 at 6.51.47 PM.png">
+<!--     <img src="docs/img/Screenshot 2023-04-18 at 6.51.47 PM.png"> -->
     <h2>Team Members 🧑‍🤝‍🧑</h2>
-   <li>R.V.Sidhardha -  Developer , Cloud Developer ,UI Designer - <a href="https://github.com/sidhu2003">GITHUB</a></li>
-     <li>P.Sai Gowtham -  Developer , UX Developer - <a href="https://github.com/p-sai-gowtham">GITHUB</a></li>
-     <li>Reshma Tejeswani.P -  Developer , Technical Writer - <a href="https://github.com/Reshma4167">GITHUB</a></li>
-      <li>V.Eswara Rao -   Developer , Tester - <a href="https://github.com/ESWARVETLA-19">GITHUB</a></li>   
+   <li>L.S Muthure -  Developer , Cloud Developer ,UI Designer - <a href="https://github.com/steve-leo254">GITHUB</a></li>
+  \
         
         
     
