@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 <h1>Amref  - The online Amref Solution </h1>
 <img src="docs/img/home.png.png">
 =======
