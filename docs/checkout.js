@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     localStorage.removeItem('pendingAppointment');
                     let confirmedAppointments = JSON.parse(localStorage.getItem('confirmedAppointments') || '[]');
                     const appointmentData = JSON.parse(pendingAppointment);
+                    appointmentData.status = 'upcoming';
                     confirmedAppointments.push(appointmentData);
                     localStorage.setItem('confirmedAppointments', JSON.stringify(confirmedAppointments));
                     document.getElementById('downloadReceiptButton').style.display = 'inline-block';
