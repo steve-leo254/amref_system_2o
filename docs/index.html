@@ -1,362 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amref | Healthcare Services</title>
+  <title>Amref | Hospital Management System</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="website icon" type="image/png" href="img/amreflogo.png" />
-
   <link rel="stylesheet" href="landing.css" />
-
-  
-
+  <style>
+    body { font-family: 'Montserrat', Arial, sans-serif; background: #f8f9fa; }
+    .navbar { transition: background 0.3s, box-shadow 0.3s; }
+    .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .btn-primary, .btn-outline-success { border-radius: 2rem; font-weight: 600; }
+    .hero-section { position: relative; background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat; min-height: 70vh; display: flex; align-items: center; color: #fff; }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(25,118,210,0.8) 0%, rgba(67,160,71,0.7) 100%); z-index: 1; }
+    .hero-content { position: relative; z-index: 2; max-width: 600px; margin-left: 5vw; }
+    .hero-title { font-size: 2.8rem; font-weight: 700; }
+    .hero-desc { font-size: 1.3rem; margin: 1.5rem 0; }
+    .feature-card { border: none; border-radius: 1.5rem; box-shadow: 0 4px 24px rgba(25,118,210,0.08); transition: transform 0.2s, box-shadow 0.2s; }
+    .feature-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 8px 32px rgba(25,118,210,0.15); }
+    .feature-icon { font-size: 2.5rem; color: #1976D2; margin-bottom: 1rem; }
+    .how-steps .step-icon { font-size: 2.2rem; color: #43A047; margin-bottom: 0.5rem; }
+    .footer { background: #212529; color: #fff; padding: 3rem 0 1rem 0; }
+    .footer a { color: #fff; opacity: 0.85; transition: opacity 0.2s; }
+    .footer a:hover { opacity: 1; }
+    .footer .social-icons a { font-size: 1.5rem; margin-right: 1rem; color: #fff; }
+    .footer .form-control { border-radius: 2rem; }
+    .footer .btn { border-radius: 2rem; }
+    .accordion-button:not(.collapsed) { color: #1976D2; background: #e3f2fd; }
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2rem; }
+      .hero-content { margin-left: 0; text-align: center; }
+    }
+  </style>
 </head>
-
 <body>
-  <span class="loader"></span>
-
-  <div class="page">
-    <nav class="navbar navbar-expand-lg sticky-top container-fluid" style="background-color: #f0fbfc">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="./index.html" style="padding-left: 2%">
-          <img src="img/amreflogo.png" alt="Amref Logo" width="100" height="100" />
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
-            <li class="nav-item mx-3">
-              <a class="nav-link fs-4" aria-current="page" href="./index.html">Home</a>
-            </li>
-            <li class="nav-item mx-3">
-              <a class="nav-link fs-4" href="./diet.html">Diet</a>
-            </li>
-            <li class="nav-item mx-3">
-              <a class="nav-link fs-4" href="./aboutus.html">About us</a>
-            </li>
-            <li class="nav-item mx-3 nav-item-logged-in" style="display: none;"> <a class="nav-link fs-4 sin"
-                href="./video.html">Zoom-Meeting</a>
-            </li>
-            <li class="nav-item mx-3 nav-item-logged-in" style="display: none;"> <a class="nav-link fs-4 profile"
-                href="./profile.html">Profile</a>
-            </li>
-          </ul>
-          <form class="d-flex nav-item-logged-out" role="search" action="./signup.html" style="display: block;"> <button
-              class="btn btn-outline-success btn-lg sinin me-2" type="submit">
-              Sign up
-            </button>
-          </form>
-          <form class="d-flex nav-item-logged-in" role="search" action="./appointment.html" style="display: none;">
-            <button class="btn btn-primary btn-lg app" type="submit"> Book now
-            </button>
-          </form>
-        </div>
-      </div>
-    </nav>
-
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="img/amrefdescrip.PNG" class="d-block w-100" alt="Description of Amref services or interface" />
-        </div>
-        <div class="carousel-item">
-          <img src="img/amrefimes.png" class="d-block w-100" alt="Diverse team of Amref healthcare professionals" />
-        </div>
-        <div class="carousel-item">
-          <img src="img/hossiamref.png" class="d-block w-100" alt="Exterior view of a modern hospital building" />
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background: transparent;">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="./index.html">
+        <img src="img/amreflogo.png" alt="Amref Logo" width="60" height="60" class="me-2" />
+        <span class="fw-bold fs-4" style="color:#1976D2;">Amref</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item mx-2"><a class="nav-link active" href="./index.html">Home</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="./diet.html">Diet</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="./aboutus.html">About Us</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="./map.html">Nearby Hospitals</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#faq">FAQ</a></li>
+        </ul>
+        <a href="./signup.html" class="btn btn-outline-success btn-lg ms-3">Sign up</a>
+        <a href="./appointment.html" class="btn btn-primary btn-lg ms-2">Book Now</a>
+      </div>
     </div>
+  </nav>
 
-    <section class="container text-center py-5">
-      <p class="text-dark txt-1 fs-2 fw-bold">We Make it Easy to Get Started</p>
-      <p class="text-dark txt-2 fs-5">by keeping things simple</p>
-    </section>
-
-    <section class="container py-4">
-      <div class="row text-center g-4">
-        <div class="col-lg-4 d-flex justify-content-center align-items-stretch col1">
-          <div class="card h-100"> <img src="img/L1.jpg" class="card-img-top"
-              alt="Doctor consulting patient via video call">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title fw-bold" id="bld">Multi Doc and Hospital Support</h5>
-              <p class="card-text text-dark">
-                Offering video calls with doctors on a website is a great
-                way to provide patients with convenient and accessible medical
-                care. Video calls can be conducted in real-time, allowing patients
-                to have virtual appointments with doctors from the comfort of
-                their own homes or any other location with an internet
-                connection.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 d-flex justify-content-center align-items-stretch col2">
-          <div class="card h-100">
-            <img src="img/L2.jpg" class="card-img-top" alt="Map showing nearby hospitals and pharmacies"
-              style="height: 200px; object-fit: cover;" />
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title fw-bold" id="bld">Nearby Hospitals and Pharma Location</h5>
-              <p class="card-text text-dark">
-                Using maps to locate nearby pharmacies and hospitals
-                on a website can be a very useful feature for users who need quick
-                access to medical facilities. By integrating maps into the
-                website, users can easily search for and locate pharmacies and
-                hospitals that are closest to their current location.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 d-flex justify-content-center align-items-stretch col3">
-          <div class="card h-100">
-            <img src="img/L3.jpg" class="card-img-top" alt="HIPAA compliance seal or graphic"
-              style="height: 200px; object-fit: cover;" />
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title fw-bold" id="bld">HIPAA Compliance Verified</h5>
-              <p class="card-text text-dark">
-                We are committed to safeguarding it in accordance with HIPAA
-                regulations. Our website and patient portal are also designed with
-                HIPAA compliance in mind. We use secure communication channels and
-                access controls to protect your PHI from unauthorized access or
-                disclosure.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="container-fluid bottom text-center py-5 text-light">
-      <p class="txt-1 fs-3 fw-bold">Deliver Aeromedical & Health Assistance</p> <br>
-      <p class="txt-2 fs-5 mb-4"> Your Health is Our Concern
-      </p>
-      <img src="img/carryoes.png" class="img-fluid" alt="Amref transport or medical equipment" />
+  <!-- Hero Section -->
+  <section class="hero-section d-flex align-items-center">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title mb-3">Your Health, Our Priority</h1>
+      <p class="hero-desc">Access quality healthcare services, book appointments, and connect with top professionals—all from the comfort of your home.</p>
+      <a href="./appointment.html" class="btn btn-primary btn-lg shadow">Book an Appointment</a>
     </div>
-
-    <section class="container faq py-5" id="faq">
-      <h2 class="text-center text-dark mb-5 fw-bold">Frequently Asked Questions</h2>
-      <div class="boxaccordion mx-auto" style="max-width: 800px;">
-        <div class="containerwidth">
-          <div class="wrapper mb-2"> <button
-              class="toggle btn btn-light w-100 text-start d-flex justify-content-between align-items-center fw-bold">
-              <span>Is Amref secure?</span>
-              <i class="fas fa-plus icon"></i>
-            </button>
-            <div class="content p-3 border border-top-0" style="display: none;">
-              <p>
-                Yes, Amref website is secure and follow strict privacy laws
-                and regulations. All communication between patients and
-                healthcare professionals is encrypted to protect patient
-                privacy.
-              </p>
-            </div>
-          </div>
-          <div class="wrapper mb-2">
-            <button
-              class="toggle btn btn-light w-100 text-start d-flex justify-content-between align-items-center fw-bold">
-              <span>Can I use this website if I don't have health insurance?</span>
-              <i class="fas fa-plus icon"></i>
-            </button>
-            <div class="content p-3 border border-top-0" style="display: none;">
-              <p>
-                Yes, you can use a telemedicine website even if you don't have
-                health insurance. Many telemedicine websites offer affordable
-                pricing and payment options for patients without insurance.
-              </p>
-            </div>
-          </div>
-          <div class="wrapper mb-2">
-            <button
-              class="toggle btn btn-light w-100 text-start d-flex justify-content-between align-items-center fw-bold">
-              <span>Do I still need to see a doctor in person if I use this website?</span>
-              <i class="fas fa-plus icon"></i>
-            </button>
-            <div class="content p-3 border border-top-0" style="display: none;">
-              <p>
-                In some cases, you may still need to see a doctor in person for
-                certain medical conditions or procedures. However, many medical
-                conditions can be diagnosed and treated remotely through our
-                website, and you may not need to see a doctor in person.
-              </p>
-            </div>
-          </div>
-          <div class="wrapper mb-2">
-            <button
-              class="toggle btn btn-light w-100 text-start d-flex justify-content-between align-items-center fw-bold">
-              <span>How do I use Amref?</span>
-              <i class="fas fa-plus icon"></i>
-            </button>
-            <div class="content p-3 border border-top-0" style="display: none;">
-              <p>
-                To use Amref website, you typically need to create an
-                account, provide your medical history and information, and
-                schedule an appointment with a healthcare professional. During
-                the appointment, you will connect with the healthcare
-                professional using video or audio calls, and they will provide
-                medical advice and treatment.
-              </p>
-            </div>
-          </div>
-          <div class="wrapper mb-2">
-            <button
-              class="toggle btn btn-light w-100 text-start d-flex justify-content-between align-items-center fw-bold">
-              <span>What services can be provided through this website?</span>
-              <i class="fas fa-plus icon"></i>
-            </button>
-            <div class="content p-3 border border-top-0" style="display: none;">
-              <p>
-                Amref can be used for a variety of medical services, including
-                consultations, diagnosis, treatment, monitoring, and medication
-                management.
-              </p>
-            </div>
-          </div>
-          <div class="wrapper mb-2">
-            <button
-              class="toggle btn btn-light w-100 text-start d-flex justify-content-between align-items-center fw-bold">
-              <span>What if I need in-person care after an appointment?</span>
-              <i class="fas fa-plus icon"></i>
-            </button>
-            <div class="content p-3 border border-top-0" style="display: none;">
-              <p>
-                If the provider determines that you need in-person care, they
-                will refer you to an appropriate healthcare provider or
-                facility.
-              </p>
-            </div>
-          </div>
+  </section>
+  <!-- Carousel Section: Amref Services, Team, Facilities -->
+  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" style="max-width:900px;margin:2.5rem auto 0 auto;box-shadow:0 4px 24px rgba(25,118,210,0.10);border-radius:1.5em;overflow:hidden;">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div style="height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f8f9fa;">
+          <img src="img/flying-doctors-01.png" class="d-block w-100 object-fit-cover" style="height:100%;width:100%;object-fit:cover;" alt="Description of Amref services or interface" />
         </div>
       </div>
-    </section>
-
-    <footer>
-      <div class="content-f">
-        <div class="left box-f">
-          <div class="upper">
-            <div class="topic">About us</div>
-            <p>
-              Amref has a thorough telemedicine website created to give
-              consumers easy access to high-quality healtcare services from the
-              convenience of their homes.
-            </p>
-          </div>
-          <div class="lower">
-            <div class="topic">Contact us</div>
-            <div class="phone">
-              <a href="tel:+254758510206"><i class="fas fa-phone-volume"></i> +254 7585810206</a>
-            </div>
-            <div class="email">
-              <a href="mailto:Steveleo254@gmail.com"><i class="fas fa-envelope"></i>Steveleo254@gmail.com</a>
-            </div>
-          </div>
-        </div>
-        <div class="middle box-f">
-          <div class="topic">Our Services</div>
-          <div><a href="./diet.html">DIET</a></div>
-          <div><a href="./aboutus.html">About Us</a></div>
-          <div><a href="#">Nearby Pharmacies</a></div>
-          <div><a href="./map.html"> Nearby Hospitals</a></div>
-          <div><a href="./index.html#faq">FAQ's</a></div>
-        </div>
-        <div class="right box-f">
-          <div class="topic">Subscribe us</div>
-          <form action="#" class="needs-validation" novalidate>
-            <div class="input-group mb-3">
-              <input type="email" class="form-control" placeholder="Enter email address" required
-                aria-label="Enter email address" />
-              <button class="btn btn-outline-secondary" type="submit">Send</button>
-              <div class="invalid-feedback w-100">Please provide a valid email address.</div>
-            </div>
-
-            <div class="media-icons mt-3"> <a href="#" class="me-3" aria-label="Facebook"><img
-                  src="img/icons8-facebook.svg" alt="Facebook" /></a>
-              <a href="#" class="me-3" aria-label="Twitter"><img src="img/icons8-twitter.svg" alt="Twitter" /></a>
-              <a href="#" class="me-3" aria-label="Instagram"><img src="img/icons8-instagram.svg" alt="Instagram" /></a>
-              <a href="#" class="me-3" aria-label="Github"><img src="img/icons8-github.svg" alt="Github" /></a>
-              <a href="#" aria-label="LinkedIn"><img src="img/icons8-linkedin-circled.svg" alt="LinkedIn" /></a>
-            </div>
-          </form>
+      <div class="carousel-item">
+        <div style="height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f8f9fa;">
+          <img src="img/flyingdoct2.png" class="d-block w-100 object-fit-cover" style="height:100%;width:100%;object-fit:cover;" alt="Diverse team of Amref healthcare professionals" />
         </div>
       </div>
-      <div class="bottom-f mt-4 text-center">
-        <p>
-          Copyright &copy; 2025 <a href="./index.html">Amref</a> All rights
-          reserved
-        </p>
+      <div class="carousel-item">
+        <div style="height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f8f9fa;">
+          <img src="img/interveiw-2.png" class="d-block w-100 object-fit-cover" style="height:100%;width:100%;object-fit:cover;" alt="Exterior view of a modern hospital building" />
+        </div>
       </div>
-    </footer>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-    crossorigin="anonymous"></script>
 
-  <script src="landing.js"></script>
+  <!-- Features Section -->
+  <section class="container py-5">
+    <div class="row text-center g-4">
+      <div class="col-md-4">
+        <div class="card feature-card h-100 p-4">
+          <div class="feature-icon mb-2"><i class="fas fa-user-md"></i></div>
+          <h5 class="fw-bold mb-2">Multi-Doctor & Hospital Support</h5>
+          <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=400&q=80" class="img-fluid rounded mb-3" alt="Group of doctors in a hospital hallway">
+          <p class="text-muted">Connect with a wide range of healthcare professionals and hospitals for comprehensive care, including real-time video consultations.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card feature-card h-100 p-4">
+          <div class="feature-icon mb-2"><i class="fas fa-map-marker-alt"></i></div>
+          <h5 class="fw-bold mb-2">Nearby Hospitals & Pharmacies</h5>
+          <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" class="img-fluid rounded mb-3" alt="Map showing nearby hospitals and pharmacies">
+          <p class="text-muted">Easily locate the nearest hospitals and pharmacies using our integrated map feature for quick access to medical facilities.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card feature-card h-100 p-4">
+          <div class="feature-icon mb-2"><i class="fas fa-shield-alt"></i></div>
+          <h5 class="fw-bold mb-2">HIPAA Compliance Verified</h5>
+          <img src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=400&q=80" class="img-fluid rounded mb-3" alt="HIPAA compliance seal or graphic">
+          <p class="text-muted">Your privacy is our priority. We use secure communication channels and access controls to protect your health information.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- How It Works Section -->
+  <section class="container py-5 how-steps">
+    <h2 class="text-center mb-5 fw-bold" style="color:#1976D2;">How It Works</h2>
+    <div class="row text-center g-4">
+      <div class="col-md-4">
+        <div class="p-4">
+          <div class="step-icon mb-2"><i class="fas fa-user-plus"></i></div>
+          <h6 class="fw-bold">1. Create an Account</h6>
+          <p class="text-muted">Sign up and provide your medical history securely.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4">
+          <div class="step-icon mb-2"><i class="fas fa-calendar-check"></i></div>
+          <h6 class="fw-bold">2. Book Appointment</h6>
+          <p class="text-muted">Choose your doctor and schedule a convenient time.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4">
+          <div class="step-icon mb-2"><i class="fas fa-video"></i></div>
+          <h6 class="fw-bold">3. Meet Online</h6>
+          <p class="text-muted">Join a secure video call and get professional advice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="container py-5" id="faq">
+    <h2 class="text-center mb-5 fw-bold" style="color:#1976D2;">Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq1-heading">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+            <i class="fas fa-lock me-2"></i> Is Amref secure?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="faq1-heading" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes, Amref website is secure and follows strict privacy laws and regulations. All communication is encrypted to protect patient privacy.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq2-heading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+            <i class="fas fa-money-bill-wave me-2"></i> Can I use this website if I don't have health insurance?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2-heading" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes, you can use Amref even if you don't have health insurance. We offer affordable pricing and payment options for all patients.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq3-heading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+            <i class="fas fa-user-md me-2"></i> Do I still need to see a doctor in person if I use this website?
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faq3-heading" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">In some cases, you may still need to see a doctor in person for certain conditions or procedures. However, many issues can be diagnosed and treated remotely.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq4-heading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+            <i class="fas fa-question-circle me-2"></i> How do I use Amref?
+          </button>
+        </h2>
+        <div id="faq4" class="accordion-collapse collapse" aria-labelledby="faq4-heading" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Create an account, provide your medical history, and schedule an appointment. Connect with a healthcare professional via secure video or audio call.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq5-heading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+            <i class="fas fa-stethoscope me-2"></i> What services can be provided through this website?
+          </button>
+        </h2>
+        <div id="faq5" class="accordion-collapse collapse" aria-labelledby="faq5-heading" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Amref offers consultations, diagnosis, treatment, monitoring, and medication management through the platform.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq6-heading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+            <i class="fas fa-hospital me-2"></i> What if I need in-person care after an appointment?
+          </button>
+        </h2>
+        <div id="faq6" class="accordion-collapse collapse" aria-labelledby="faq6-heading" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">If in-person care is needed, your provider will refer you to an appropriate healthcare facility.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">About Us</h5>
+          <p>Amref provides easy access to high-quality healthcare services from the comfort of your home.</p>
+          <div class="mt-3">
+            <a href="tel:+254758510206"><i class="fas fa-phone-volume me-2"></i>+254 7585810206</a><br>
+            <a href="mailto:Steveleo254@gmail.com"><i class="fas fa-envelope me-2"></i>Steveleo254@gmail.com</a>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">Our Services</h5>
+          <ul class="list-unstyled">
+            <li><a href="./diet.html">Diet</a></li>
+            <li><a href="./aboutus.html">About Us</a></li>
+            <li><a href="#">Nearby Pharmacies</a></li>
+            <li><a href="./map.html">Nearby Hospitals</a></li>
+            <li><a href="#faq">FAQ's</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-3">Subscribe to our Newsletter</h5>
+          <form class="d-flex mb-3">
+            <input type="email" class="form-control me-2" placeholder="Enter email address" required />
+            <button class="btn btn-primary" type="submit">Send</button>
+          </form>
+          <div class="social-icons mt-3">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Github"><i class="fab fa-github"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <p class="mb-0">&copy; 2025 <a href="./index.html" class="fw-bold" style="color:#1976D2;">Amref</a> All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script>
-    (function () {
-      'use strict'
-      // Basic Bootstrap validation setup for the footer form
-      var forms = document.querySelectorAll('.needs-validation')
-      Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-          form.addEventListener('submit', function (event) {
-            if (!form.checkValidity()) {
-              event.preventDefault()
-              event.stopPropagation()
-            }
-            form.classList.add('was-validated')
-          }, false)
-        })
-
-      // Example: Basic FAQ Accordion Toggle (if not using Bootstrap collapse)
-      // Assumes your landing.js doesn't handle this already.
-      const toggles = document.querySelectorAll('.boxaccordion .toggle');
-      toggles.forEach(toggle => {
-        toggle.addEventListener('click', () => {
-          const content = toggle.nextElementSibling;
-          const icon = toggle.querySelector('.icon');
-
-          if (content.style.display === 'block') {
-            content.style.display = 'none';
-            icon.classList.remove('fa-minus');
-            icon.classList.add('fa-plus');
-          } else {
-            // Optional: Close other open items
-            // document.querySelectorAll('.boxaccordion .content').forEach(c => c.style.display = 'none');
-            // document.querySelectorAll('.boxaccordion .icon').forEach(i => { i.classList.remove('fa-minus'); i.classList.add('fa-plus'); });
-
-            content.style.display = 'block';
-            icon.classList.remove('fa-plus');
-            icon.classList.add('fa-minus');
-          }
-        });
-      });
-
-
-    })()
+    // Navbar background on scroll
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
   </script>
-
 </body>
-
 </html>

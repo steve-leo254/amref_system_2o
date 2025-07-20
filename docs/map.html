@@ -25,25 +25,19 @@
 </head>
 
 <body>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-between w-100" id="navLinks">
-            <li class="nav-item mx-3">
-                <a class="nav-link fs-4" aria-current="page" href="./index.html">Home</a>
-            </li>
-            <li class="nav-item mx-3">
-                <a class="nav-link fs-4" href="./diet.html">Diet</a>
-            </li>
-            <li class="nav-item mx-3">
-                <a class="nav-link fs-4" href="./aboutus.html">About us</a>
-            </li>
-            <li class="nav-item mx-3">
-                <a class="nav-link fs-4" href="./signup.html">Sign-In</a>
-            </li>
-        </ul>
-        <form class="d-flex" role="search" action="./appointment.html">
-            <button class="btn btn-outline-success btn-lg" type="submit">Book now</button>
-        </form>
-    </div>
+    <nav class="navbar">
+        <a class="navbar-brand" href="./index.html">
+            <img src="img/amreflogo.png" alt="Amref Logo"> Amref Health
+        </a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="./index.html">Home</a>
+            <a class="nav-link" href="./diet.html">Diet</a>
+            <a class="nav-link" href="./aboutus.html">About Us</a>
+            <a class="nav-link" href="./signup.html">Sign-In</a>
+            <a class="btn btn-outline-success" href="./appointment.html">Book Now</a>
+        </div>
+    </nav>
+    <h1 style="color:#1976D2; font-size:2.2rem; font-weight:700; margin-top:2.5rem; margin-bottom:1.2rem; text-align:center; letter-spacing:0.5px;">Find Nearby Hospitals</h1>
     <!-- Embedded Google Map -->
     <div class="map-container">
         <iframe

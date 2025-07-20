@@ -359,3 +359,27 @@ footer a:hover {
         border-color: #008893 !important;
         color: #fff !important;
     }    
+
+/* --- Moved from diet.html <style> block --- */
+body { font-family: 'Montserrat', Arial, sans-serif; }
+.hero-banner { position: relative; background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat; min-height: 320px; display: flex; align-items: center; justify-content: center; color: #fff; margin-bottom: 2.5rem; }
+.hero-banner .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(25,118,210,0.7) 0%, rgba(67,160,71,0.5) 100%); z-index: 1; }
+.hero-banner .content { position: relative; z-index: 2; text-align: center; max-width: 700px; }
+.hero-banner h1 { font-size: 2.8rem; font-weight: 700; letter-spacing: 1px; }
+.hero-banner p { font-size: 1.3rem; margin-top: 1rem; font-weight: 400; }
+.head1 h1 { font-size: 2.2rem; font-weight: 700; color: #1976D2; margin-bottom: 2rem; margin-top: 2rem; }
+.section-divider { border: none; border-top: 2px solid #e3f2fd; margin: 3rem 0 2rem 0; }
+.cards { margin-bottom: 5%; margin-left: 5%; margin-right: 5%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; }
+.card { margin: 0 auto 2rem auto; background-color: #fff; border-radius: 30px; box-shadow: 0 0 20px rgba(0,0,0,0.10); transition: transform 0.2s, box-shadow 0.2s; min-width: 18rem; max-width: 18rem; min-height: 410px; display: flex; flex-direction: column; animation: fadeInUp 1s; position: relative; }
+.card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 8px 32px rgba(25,118,210,0.15); }
+.card-img-top { border-top-left-radius: 30px; border-top-right-radius: 30px; height: 200px; width: 100%; object-fit: cover; margin-top: 6px; }
+.card-title { font-size: 1.3rem; font-weight: 700; color: #1976D2; margin-bottom: 0.7rem; }
+.card-body { padding: 1.5rem; flex: 1 1 auto; display: flex; flex-direction: column; justify-content: flex-start; }
+.card-text { color: #555; font-size: 1rem; margin-top: auto; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+.section-title { font-size: 2rem; font-weight: 700; color: #1976D2; margin-bottom: 1.5rem; margin-top: 2.5rem; text-align: center; }
+.section-content { font-size: 1.1rem; color: #333; margin-bottom: 2rem; }
+.btn-primary, .btn-outline-success { border-radius: 2rem; font-weight: 600; padding: 0.6rem 2rem; font-size: 1.1rem; }
+@media (max-width: 991.98px) { .cards { gap: 1rem; } .card { min-width: 100%; max-width: 100%; } }
+@media (max-width: 767.98px) { .hero-banner h1 { font-size: 2rem; } .section-title { font-size: 1.3rem; } }
+    

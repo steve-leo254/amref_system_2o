@@ -535,3 +535,216 @@ select.is-valid:focus {
     border-color: #198754;
     box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
 }
+
+/* --- Modern Hospital-Blue Navbar Styles --- */
+.navbar-amref {
+    background: #1976D2 !important;
+    box-shadow: 0 2px 8px rgba(25,118,210,0.08);
+    z-index: 1050;
+}
+.navbar-amref .navbar-brand img {
+    width: 60px;
+    height: 60px;
+    padding: 4px 8px;
+}
+.navbar-amref .nav-link {
+    color: #fff !important;
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin: 0 0.7rem;
+    border-radius: 2rem;
+    transition: background 0.2s, color 0.2s;
+    padding: 0.4rem 1.1rem;
+}
+.navbar-amref .nav-link.active, .navbar-amref .nav-link[aria-current="page"] {
+    background: #43A047;
+    color: #fff !important;
+}
+.navbar-amref .nav-link:hover, .navbar-amref .nav-link:focus {
+    background: rgba(255,255,255,0.12);
+    color: #fff !important;
+    text-decoration: underline;
+}
+.navbar-amref .btn-primary, .navbar-amref .btn-outline-success {
+    border-radius: 2rem;
+    font-weight: 700;
+    margin-left: 1rem;
+    box-shadow: 0 2px 8px rgba(25,118,210,0.08);
+}
+.navbar-amref .btn-primary {
+    background: #43A047 !important;
+    border-color: #43A047 !important;
+}
+.navbar-amref .btn-primary:hover {
+    background: #388e3c !important;
+    border-color: #388e3c !important;
+}
+.navbar-amref .btn-success {
+    background: #43A047 !important;
+    border-color: #43A047 !important;
+    border-radius: 2rem;
+    font-weight: 700;
+}
+.navbar-amref .btn-success:hover {
+    background: #388e3c !important;
+    border-color: #388e3c !important;
+}
+.navbar-amref .navbar-toggler {
+    border: none;
+}
+.navbar-amref .navbar-toggler:focus {
+    box-shadow: 0 0 0 2px #43A047;
+}
+
+/* --- Hero Banner and Section Styles (moved from HTML) --- */
+.hero-banner {
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd23?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin-bottom: 2.5rem;
+}
+.hero-banner .overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(25,118,210,0.7) 0%, rgba(67,160,71,0.5) 100%);
+    z-index: 1;
+}
+.hero-banner .content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 700px;
+}
+.hero-banner h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.hero-banner p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    font-weight: 400;
+}
+.section-divider {
+    border: none;
+    border-top: 2px solid #e3f2fd;
+    margin: 3rem 0 2rem 0;
+}
+.section-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #1976D2;
+    margin-bottom: 1.2rem;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.section-title i { color: #43A047; font-size: 1.7rem; }
+.fade-in-section { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-in-section.visible { opacity: 1; transform: none; }
+.card { border-radius: 1.2rem; box-shadow: 0 4px 24px rgba(25,118,210,0.10); border: none; }
+.btn, .btn-primary, .btn-outline-success { border-radius: 2rem !important; font-weight: 600; }
+.btn i { margin-right: 0.5rem; }
+.form-label { font-weight: 600; }
+.calendar-day.selected, .calendar-day:focus { background-color: #1976D2 !important; color: #fff !important; }
+.calendar-day { border-radius: 0.5rem; }
+.calendar-day.disabled { color: #ccc !important; background: #f8f9fa !important; }
+.invalid-feedback, .alert { animation: fadeInUp 0.7s; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 991.98px) {
+    .hero-banner h1 { font-size: 1.5rem; }
+    .section-title { font-size: 1.1rem; }
+}
+
+/* --- Improved Calendar Appearance --- */
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#calWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 320px;
+}
+#calWrap > .text-center.mb-2.fw-bold {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+#calWrap .d-flex.justify-content-between.mb-1 {
+    margin-bottom: 0.5rem;
+}
+.calendar-day {
+    border-radius: 50%;
+    width: 2.5em !important;
+    height: 2.5em !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: 2px solid #1976D2;
+    background: #fff;
+    color: #1976D2;
+    margin: 0.15em;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    outline: none;
+}
+.calendar-day:hover:not(.disabled):not(.selected),
+.calendar-day:focus-visible:not(.disabled):not(.selected) {
+    background: #e3f2fd;
+    color: #1976D2;
+    border-color: #43A047;
+    cursor: pointer;
+}
+.calendar-day.selected {
+    background: #43A047 !important;
+    color: #fff !important;
+    border-color: #43A047 !important;
+}
+.calendar-day.today:not(.selected) {
+    border-color: #ff9800 !important;
+    box-shadow: 0 0 0 2px #ff980033;
+}
+.calendar-day.disabled {
+    background: #f0f0f0 !important;
+    color: #bbb !important;
+    border: none !important;
+    cursor: not-allowed !important;
+    opacity: 0.6;
+}
+#calWrap .d-flex.flex-wrap {
+    gap: 0.2em 0.2em;
+    justify-content: flex-start;
+}
+#calBack, #calNext {
+    border-radius: 50%;
+    width: 2.2em;
+    height: 2.2em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    background: #fff;
+    color: #1976D2;
+    border: 2px solid #1976D2;
+    margin: 0 0.2em;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+#calBack:hover, #calNext:hover, #calBack:focus, #calNext:focus {
+    background: #e3f2fd;
+    color: #43A047;
+    border-color: #43A047;
+}
+.calendar-day:focus {
+    outline: 2px solid #43A047;
+    outline-offset: 2px;
+}

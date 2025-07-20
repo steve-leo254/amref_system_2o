@@ -5,340 +5,133 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Book Appointment | Amref</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="website icon" type="image/png" href="img/amreflogo.png">
     <link rel="stylesheet" href="appointment.css">
-    <style>
-        /* --- Keep existing styles from your original code --- */
-        /* Basic styles for the calendar dialog */
-        #calForm h2 {
-            margin-top: 0;
-        }
-
-        #calForm label {
-            display: block;
-            margin-top: 10px;
-        }
-
-        #calForm input[type="text"],
-        #calForm textarea {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-
-        #calForm #evtClose {
-            float: right;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        #calForm input[type="button"],
-        #calForm input[type="submit"] {
-            margin-top: 15px;
-            padding: 10px 15px;
-        }
-
-        #calForm #evtDel {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-        }
-
-        .vertical-icon-nav {
-            position: fixed;
-            left: 0;
-            top: 30%;
-            background: #eee;
-            padding: 10px 5px;
-            border-radius: 0 10px 10px 0;
-            z-index: 1031;
-        }
-
-        .vertical-icon-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .vertical-icon-nav li {
-            margin-bottom: 15px;
-        }
-
-        .vertical-icon-nav img {
-            max-width: 40px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .calendar-day {
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .calendar-day:hover {
-            background-color: #f0f0f0;
-        }
-
-        .calendar-day.selected {
-            background-color: #0d6efd;
-            color: white;
-        }
-
-        .calendar-day.disabled {
-            color: #ccc;
-            cursor: not-allowed;
-        }
-
-        .time-slot-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 0.5rem;
-        }
-
-        .time-slot-btn {
-            transition: all 0.2s;
-        }
-
-        .time-slot-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .time-slot-btn:disabled {
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .calendar-container {
-                margin-bottom: 1.5rem !important;
-            }
-        }
-
-        /* --- Added/Improved Styles --- */
-        .select-wrapper {
-            position: relative;
-        }
-
-        .success-tick {
-            position: absolute;
-            right: 35px;
-            /* Adjusted for potential BS validation icon */
-            top: 50%;
-            transform: translateY(-50%);
-            color: #198754;
-            /* Bootstrap success green */
-            font-size: 1.2rem;
-            pointer-events: none;
-            /* Don't interfere with clicks */
-            display: none;
-            /* Hidden by default */
-            z-index: 5;
-            /* Ensure it's above the select box */
-        }
-
-        /* Show tick when the select is explicitly marked as valid by JS */
-        .form-select.is-valid+.success-tick {
-            display: inline-block;
-        }
-
-        /* Make space for our tick AND Bootstrap's validation icon */
-        .was-validated .select-wrapper .form-select:valid {
-            /* Moves default BS check icon slightly left */
-            background-position: right calc(0.375em + 1.5rem) center;
-        }
-
-        .was-validated .select-wrapper .form-select:invalid {
-            /* Moves default BS X icon slightly left */
-            background-position: right calc(0.375em + 1.5rem) center;
-        }
-
-        /* Ensure feedback divs are visible when needed */
-        .invalid-feedback {
-            display: none;
-            /* Hide by default */
-            width: 100%;
-            margin-top: 0.25rem;
-            font-size: .875em;
-            color: #dc3545;
-            /* Bootstrap danger color */
-        }
-
-        .form-control.is-invalid~.invalid-feedback,
-        .form-select.is-invalid~.invalid-feedback,
-        .was-validated :invalid~.invalid-feedback {
-            display: block;
-            /* Show when input is invalid */
-        }
-
-        /* Custom display for date/time errors not directly tied to an input */
-        #calError.d-block,
-        #timeSlotError.d-block {
-            display: block !important;
-        }
-    </style>
 </head>
 
 <body>
-    <nav class="vertical-icon-nav d-none d-md-block">
-        <ul>
-            <li><a href="./index.html" title="Home"><img src="img/home-icon-silhouette-svgrepo-com 1.png"
-                        alt="Dashboard"></a></li>
-            <li><a href="./aboutus.html" title="About Us"><img src="img/Vector.png" alt="About Us"></a></li>
-            <li><a href="./map.html" title="Find Location"><img src="img/find-on-map-svgrepo-com 1.png"
-                        alt="Find Location"></a></li>
-            <li><a href="./diet.html" title="Diet Plan"><img src="img/diet-svgrepo-com 1.png" alt="Diet Plan"></a></li>
-            <li><a href="./signin.html" title="Logout"><img src="img/logout-svgrepo-com 1.png" alt="Logout"></a></li>
-        </ul>
-    </nav>
-
-    <nav class="navbar navbar-expand-lg sticky-top bg-light shadow-sm">
+    <!-- Modern Hospital-Blue Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-amref sticky-top" style="z-index:1050;">
         <div class="container-fluid">
-            <a class="navbar-brand ms-md-3" href="./index.html">
-                <img src="img/amreflogo.png" alt="Amref Logo" width="80" height="80">
+            <a class="navbar-brand d-flex align-items-center" href="./index.html">
+                <img src="img/amreflogo.png" alt="Amref Logo">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-md-4" id="navLinks">
-                    <li class="nav-item mx-2"><a class="nav-link fs-5" aria-current="page" href="./index.html">Home</a>
-                    </li>
-                    <li class="nav-item mx-2"><a class="nav-link fs-5" href="./diet.html">Diet</a></li>
-                    <li class="nav-item mx-2"><a class="nav-link fs-5 active" href="./appointment.html">Appointment</a>
-                    </li>
-                    <li class="nav-item mx-2"><a class="nav-link fs-5" href="./aboutus.html">About us</a></li>
-                    <li class="nav-item mx-2"><a class="nav-link fs-5" href="./map.html">Location</a></li>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item mx-2"><a class="nav-link" href="./index.html">Home</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link" href="./diet.html">Diet</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link" href="./aboutus.html">About Us</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link" href="./map.html">Nearby Hospitals</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link" href="./index.html#faq">FAQ</a></li>
                 </ul>
+                <a href="./signup.html" class="btn btn-success btn-lg ms-3 px-4" style="border-radius: 2rem; font-weight: 700;">Sign up</a>
+                <a href="./appointment.html" class="btn btn-primary btn-lg ms-2 px-4">Book Now</a>
             </div>
         </div>
     </nav>
 
-    <main class="container py-4">
+    <!-- Hero Banner -->
+    <section class="hero-banner mb-4">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Book Your Appointment</h1>
+            <p>Schedule a visit with our top healthcare professionals. Choose your doctor, date, and time—all in one place.</p>
+        </div>
+    </section>
+
+    <main class="container py-4 fade-in-section">
         <h1 class="text-center text-primary display-5 heading mb-4">Book Your Appointment</h1>
-
         <div id="formStatus" role="alert" aria-live="polite"></div>
-
         <form id="appointmentForm" novalidate>
             <div class="row g-4">
                 <section class="col-md-6">
-                    <h2 class="fs-4 mb-3">Patient & Doctor Information</h2>
-
-                    <div class="mb-3">
-                        <label for="patientName" class="form-label">Full Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="patientName" placeholder="Enter your full name"
-                            required aria-describedby="patientNameError">
-                        <div id="patientNameError" class="invalid-feedback">Please enter your full name.</div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="patientEmail" class="form-label">Email Address <span
-                                class="text-danger">*</span></label>
-                        <input type="email" class="form-control" id="patientEmail" placeholder="your.email@example.com"
-                            required aria-describedby="patientEmailError">
-                        <div id="patientEmailError" class="invalid-feedback">Please enter a valid email address.</div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="patientPhone" class="form-label">Phone Number <span
-                                class="text-danger">*</span></label>
-                        <input type="tel" class="form-control" id="patientPhone" placeholder="e.g., 07xxxxxxxx" required
-                            pattern="[0-9]{10}" aria-describedby="patientPhoneError">
-                        <div id="patientPhoneError" class="invalid-feedback">Please enter a valid 10-digit phone number.
+                    <div class="card p-4 mb-4 fade-in-section">
+                        <h2 class="section-title"><i class="fas fa-user-md"></i> Patient & Doctor Information</h2>
+                        <div class="mb-3">
+                            <label for="patientName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="patientName" placeholder="Enter your full name" required aria-describedby="patientNameError">
+                            <div id="patientNameError" class="invalid-feedback">Please enter your full name.</div>
                         </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="specialization" class="form-label">Doctor's Specialization <span
-                                class="text-danger">*</span></label>
-                        <select class="form-select" id="specialization" required aria-describedby="specializationError">
-                            <option value="" selected disabled>-- Select Specialization --</option>
-                            <option value="Cardiology">Cardiology</option>
-                            <option value="Dermatology">Dermatology</option>
-                            <option value="General Practice">General Practice</option>
-                            <option value="Pediatrics">Pediatrics</option>
-                        </select>
-                        <div id="specializationError" class="invalid-feedback">Please select a specialization.</div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="hospital" class="form-label">Hospital / Clinic <span
-                                class="text-danger">*</span></label>
-                        <select class="form-select" id="hospital" required aria-describedby="hospitalError">
-                            <option value="" selected disabled>-- Select Hospital/Clinic --</option>
-                            <option value="Nairobi Hospital">Nairobi Hospital</option>
-                            <option value="Aga Khan University Hospital">Aga Khan University Hospital</option>
-                            <option value="MP Shah Hospital">MP Shah Hospital</option>
-                        </select>
-                        <div id="hospitalError" class="invalid-feedback">Please select a hospital or clinic.</div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="doctor" class="form-label">Select Doctor <span class="text-danger">*</span></label>
-                        <div class="select-wrapper"> <select class="form-select" id="doctor" required
-                                aria-describedby="doctorError" disabled>
-                                <option value="" selected disabled>-- Select Specialization/Hospital First --</option>
+                        <div class="mb-3">
+                            <label for="patientEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="patientEmail" placeholder="your.email@example.com" required aria-describedby="patientEmailError">
+                            <div id="patientEmailError" class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="patientPhone" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="patientPhone" placeholder="e.g., 07xxxxxxxx" required pattern="[0-9]{10}" aria-describedby="patientPhoneError">
+                            <div id="patientPhoneError" class="invalid-feedback">Please enter a valid 10-digit phone number.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="specialization" class="form-label">Doctor's Specialization <span class="text-danger">*</span></label>
+                            <select class="form-select" id="specialization" required aria-describedby="specializationError">
+                                <option value="" selected disabled>-- Select Specialization --</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Dermatology">Dermatology</option>
+                                <option value="General Practice">General Practice</option>
+                                <option value="Pediatrics">Pediatrics</option>
                             </select>
-                            <span id="doctorTick" class="success-tick">&#x2713;</span>
+                            <div id="specializationError" class="invalid-feedback">Please select a specialization.</div>
                         </div>
-                        <div id="doctorError" class="invalid-feedback">Please select a doctor.</div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="appointmentReason" class="form-label">Reason for Appointment (Optional)</label>
-                        <textarea class="form-control" id="appointmentReason" rows="3"
-                            placeholder="Briefly describe the reason for your visit"></textarea>
+                        <div class="mb-3">
+                            <label for="hospital" class="form-label">Hospital / Clinic <span class="text-danger">*</span></label>
+                            <select class="form-select" id="hospital" required aria-describedby="hospitalError">
+                                <option value="" selected disabled>-- Select Hospital/Clinic --</option>
+                                <option value="Nairobi Hospital">Nairobi Hospital</option>
+                                <option value="Aga Khan University Hospital">Aga Khan University Hospital</option>
+                                <option value="MP Shah Hospital">MP Shah Hospital</option>
+                            </select>
+                            <div id="hospitalError" class="invalid-feedback">Please select a hospital or clinic.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="doctor" class="form-label">Select Doctor <span class="text-danger">*</span></label>
+                            <div class="select-wrapper">
+                                <select class="form-select" id="doctor" name="doctor" required aria-describedby="doctorError">
+                                    <option value="" selected disabled>-- Select Doctor --</option>
+                                    <option value="lovette">Lovette Kananu</option>
+                                    <option value="steve">Steve Leo</option>
+                                    <option value="stella">Stella Kanini</option>
+                                </select>
+                                <span id="doctorTick" class="success-tick" aria-label="Doctor selected">&#x2713;</span>
+                            </div>
+                            <div id="doctorError" class="invalid-feedback">Please select a doctor.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="appointmentReason" class="form-label">Reason for Appointment (Optional)</label>
+                            <textarea class="form-control" id="appointmentReason" rows="3" placeholder="Briefly describe the reason for your visit"></textarea>
+                        </div>
                     </div>
                 </section>
-
                 <section class="col-md-6">
-                    <div class="datetime-selection-container">
-                        <h2 class="fs-4 mb-3">Appointment Date & Time</h2>
-
+                    <div class="card p-4 mb-4 fade-in-section">
+                        <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Appointment Date & Time</h2>
                         <div class="mb-4 calendar-container">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h3 class="fs-5 mb-0">Select Date <span class="text-danger">*</span></h3>
                                 <div>
-                                    <button id="calBack" type="button" class="btn btn-sm btn-outline-secondary"
-                                        aria-label="Previous Month">&lt;</button>
-                                    <button id="calNext" type="button" class="btn btn-sm btn-outline-secondary"
-                                        aria-label="Next Month">&gt;</button>
+                                    <button id="calBack" type="button" class="btn btn-sm btn-outline-secondary" aria-label="Previous Month"><i class="fas fa-chevron-left"></i></button>
+                                    <button id="calNext" type="button" class="btn btn-sm btn-outline-secondary" aria-label="Next Month"><i class="fas fa-chevron-right"></i></button>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="border rounded p-2 mb-3" id="calWrap" aria-labelledby="calendar-heading"
-                                        role="application" style="min-height: 250px;">
-                                        <div id="calendar-heading" class="visually-hidden">Appointment Date Selection
-                                            Calendar</div>
+                                    <div class="border rounded p-2 mb-3" id="calWrap" aria-labelledby="calendar-heading" role="application" style="min-height: 250px;">
+                                        <div id="calendar-heading" class="visually-hidden">Appointment Date Selection Calendar</div>
                                         <p class="text-center text-muted" id="calendarLoading">Loading Calendar...</p>
                                     </div>
-                                    <input type="hidden" id="selectedDate" name="selectedDate" required
-                                        aria-describedby="dateError">
-                                    <div id="dateError" class="invalid-feedback">Please select an available date from
-                                        the calendar.</div>
+                                    <input type="hidden" id="selectedDate" name="selectedDate" required aria-describedby="dateError">
+                                    <div id="dateError" class="invalid-feedback">Please select an available date from the calendar.</div>
                                 </div>
                                 <div class="col-12 mt-2">
                                     <label for="customDate" class="form-label">Selected date:</label>
-                                    <input type="text" class="form-control" id="customDate" aria-describedby="dateError"
-                                        readonly disabled>
+                                    <input type="text" class="form-control" id="customDate" aria-describedby="dateError" readonly disabled>
                                 </div>
                                 <div class="d-none">
                                     <select id="calMonth" class="form-select form-select-sm mb-2"></select>
@@ -346,35 +139,32 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="mb-3">
                             <h3 class="fs-5 mb-3">Select Time <span class="text-danger">*</span></h3>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="timeSelect" class="form-label">Available time slots</label>
-                                        <select class="form-select" id="timeSelect" aria-describedby="timeSlotError"
-                                            disabled>
-                                            <option value="" selected disabled>-- Choose Date First --</option>
+                                        <select class="form-select" id="timeSelect" name="timeSelect" aria-describedby="timeSlotError" disabled>
+                                            <option value="" selected disabled>-- Choose Time --</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="customTime" class="form-label">Or enter custom time</label>
-                                        <input type="time" class="form-control" id="customTime"
-                                            aria-describedby="timeSlotError" disabled>
+                                        <input type="time" class="form-control" id="customTime" name="customTime" aria-describedby="timeSlotError" disabled>
                                     </div>
                                 </div>
                             </div>
-                            <div id="timeSlotError" class="invalid-feedback">Please select an available time slot or
-                                enter a custom time.</div>
+                            <div id="timeSlotError" class="invalid-feedback">Please select an available time slot or enter a custom time.</div>
+                            <div class="form-text text-muted mb-2">You can select a time slot or enter a custom time above.</div>
                         </div>
                     </div>
                 </section>
             </div>
             <div class="button-container">
-                <button type="submit" id="checkoutButton" class="btn btn-primary btn-lg">Proceed to Checkout</button>
+                <button type="submit" id="checkoutButton" class="btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Proceed to Checkout</button>
             </div>
         </form>
         <dialog id="calForm">
@@ -389,7 +179,6 @@
                 <input id="evtSave" type="submit" value="Save">
             </form>
         </dialog>
-
     </main>
 
     <footer class="bg-dark text-light pt-5 pb-3 mt-5">
@@ -397,8 +186,7 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase mb-3">About Us</h5>
-                    <p>Amref provides a comprehensive telemedicine platform designed to offer easy access to quality
-                        healthcare services from the comfort of your home.</p>
+                    <p>Amref provides a comprehensive telemedicine platform designed to offer easy access to quality healthcare services from the comfort of your home.</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase mb-3">Our Services</h5>
@@ -414,34 +202,26 @@
                     <h5 class="text-uppercase mb-3">Contact & Subscribe</h5>
                     <address class="mb-3" style="font-style: normal;">
                         <div class="phone mb-1">
-                            <a href="tel:+254758510206" class="text-light text-decoration-none"><i
-                                    class="fas fa-phone-volume me-2"></i>+254758510206</a>
+                            <a href="tel:+254758510206" class="text-light text-decoration-none"><i class="fas fa-phone-volume me-2"></i>+254758510206</a>
                         </div>
                         <div class="email">
-                            <a href="mailto:Steveleo254@gmail.com" class="text-light text-decoration-none"><i
-                                    class="fas fa-envelope me-2"></i>Steveleo254@gmail.com</a>
+                            <a href="mailto:Steveleo254@gmail.com" class="text-light text-decoration-none"><i class="fas fa-envelope me-2"></i>Steveleo254@gmail.com</a>
                         </div>
                     </address>
                     <form action="#" class="mb-3 needs-validation" novalidate>
                         <label for="footer-subscribe-email" class="visually-hidden">Email address</label>
                         <div class="input-group">
-                            <input type="email" id="footer-subscribe-email" class="form-control"
-                                placeholder="Enter email address" required>
+                            <input type="email" id="footer-subscribe-email" class="form-control" placeholder="Enter email address" required>
                             <button type="submit" class="btn btn-primary">Send</button>
                             <div class="invalid-feedback">Please provide a valid email.</div>
                         </div>
                     </form>
                     <div class="media-icons">
-                        <a href="#" class="text-light me-2" aria-label="Facebook"><img src="img/icons8-facebook.svg"
-                                alt="Facebook"></a>
-                        <a href="#" class="text-light me-2" aria-label="Twitter"><img src="img/icons8-twitter.svg"
-                                alt="Twitter"></a>
-                        <a href="#" class="text-light me-2" aria-label="Instagram"><img src="img/icons8-instagram.svg"
-                                alt="Instagram"></a>
-                        <a href="#" class="text-light me-2" aria-label="Github"><img src="img/icons8-github.svg"
-                                alt="Github"></a>
-                        <a href="#" class="text-light" aria-label="LinkedIn"><img src="img/icons8-linkedin-circled.svg"
-                                alt="LinkedIn"></a>
+                        <a href="#" class="text-light me-2" aria-label="Facebook"><img src="img/icons8-facebook.svg" alt="Facebook"></a>
+                        <a href="#" class="text-light me-2" aria-label="Twitter"><img src="img/icons8-twitter.svg" alt="Twitter"></a>
+                        <a href="#" class="text-light me-2" aria-label="Instagram"><img src="img/icons8-instagram.svg" alt="Instagram"></a>
+                        <a href="#" class="text-light me-2" aria-label="Github"><img src="img/icons8-github.svg" alt="Github"></a>
+                        <a href="#" class="text-light" aria-label="LinkedIn"><img src="img/icons8-linkedin-circled.svg" alt="LinkedIn"></a>
                     </div>
                 </div>
             </div>
@@ -451,9 +231,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="appointment.js"></script>
     <script>
         (function () {
@@ -470,6 +248,19 @@
                     }, false)
                 })
         })()
+        // Fade-in on scroll for main section
+        function revealOnScroll() {
+            const sections = document.querySelectorAll('.fade-in-section');
+            const windowHeight = window.innerHeight;
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < windowHeight - 60) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('DOMContentLoaded', revealOnScroll);
     </script>
 </body>
 

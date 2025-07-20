@@ -5,19 +5,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>About Us</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="website icon" type="png" href="img/amreflogo.png">
     <link rel="stylesheet" href="aboutus.css">
+    <style>
+       
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg sticky-top  container-fluid" style="background-color: #f0fbfc;">
+    <nav class="navbar navbar-expand-lg sticky-top container-fluid" style="background-color: #f0fbfc;">
         <div class="container-fluid">
             <a class="navbar-brand" href="./index.html" style="padding-left: 2%;">
-                <img src="img/amreflogo.png" alt="Logo" width="100" height="100">
+                <img src="img/amreflogo.png" alt="Amref Logo" width="100" height="100">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -40,74 +43,107 @@
                     </li>
                 </ul>
                 <form class="d-flex" role="search" action="./appointment.html">
-                    <button class="btn btn-outline-success btn-lg" type="submit">Book now</button>
+                    <button class="btn btn-outline-success btn-lg" type="submit" aria-label="Book an appointment">Book now</button>
                 </form>
             </div>
         </div>
     </nav>
 
-    <!-- about us -->
+    <!-- Hero Banner -->
+    <section class="hero-banner mb-4">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>About Amref Flying Doctors</h1>
+            <p>Delivering lifesaving care from the skies for over 65 years. Bridging the gap between remote communities and advanced medical care across Africa.</p>
+        </div>
+    </section>
 
-    <div class="continer-fluid content1">
-        <div class="row content1-1">
-            <div class="container col-md-6 para1">
-                <h2 class="display-5 text-center">
-                    AMREF Flying Doctors: Lifesaving Care from the Skies
-                </h2>
-                <div class="container p1">
-                    <p class="text-center">
-                        AMREF Flying Doctors is Africa's premier provider of fixed-wing air ambulance services, delivering critical medical evacuation and healthcare solutions across the continent and beyond. Based at Wilson Airport in Nairobi, Kenya, this renowned organization has been a beacon of hope for over 65 years, bridging the gap between remote communities and advanced medical care.
-                        <b class="strong">As a vital arm of Amref Health Africa, the largest health development non-governmental organization on the continent, AMREF Flying Doctors combines cutting-edge aviation technology with world-class medical expertise to save lives in even the most challenging environments.</b>
+    <div class="container fade-in-section">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="section-title"><i class="fas fa-plane-departure"></i> AMREF Flying Doctors: Lifesaving Care from the Skies</h2>
+                <div class="section-content">
+                    <p>
+                        AMREF Flying Doctors is Africa's premier provider of fixed-wing air ambulance services, delivering critical medical evacuation and healthcare solutions across the continent and beyond. Based at Wilson Airport in Nairobi, Kenya, this renowned organization has been a beacon of hope for over 65 years, bridging the gap between remote communities and advanced medical care.<br><br>
+                        <b>As a vital arm of Amref Health Africa, the largest health development non-governmental organization on the continent, AMREF Flying Doctors combines cutting-edge aviation technology with world-class medical expertise to save lives in even the most challenging environments.</b>
                     </p>
                 </div>
             </div>
-            <div class="container col-md-5">
-                <img class="img1" src="img/amreflady.jpg" alt="" />
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid content2">
-        <h2 class="text-center our">OUR MISSION</h2>
-        <div class="container-fluid row content2-1">
-            <div class="containter col-md-4">
-                <img class="img2" src="img/mamaimag.jpg" alt="" />
-            </div>
-            <div class="containter col-md-6 para2">
-                <h2 class="display-5 text-center">
-                    At the heart of AMREF Flying Doctors' operations is a commitment to providing rapid, reliable, and compassionate aeromedical services.
-                </h2>
-                <p class="text-center">
-                    <b class="strong">
-                        We aim to ensure that no one is denied access to life-saving care due to distance, terrain, or circumstance. As a social enterprise, any surplus generated from our operations is reinvested into Amref Health Africa's humanitarian initiatives, supporting sustainable health improvements across Africa.
-                    </b>
-                </p>
+            <div class="col-lg-6 fade-in-section">
+                <img class="about-img" src="img/inside-amref.png" alt="AMREF Flying Doctors air ambulance team" />
             </div>
         </div>
     </div>
 
-    <div class="continer-fluid content1">
-        <div class="row content3-1">
-            <div class="container col-md-6 para1">
-                <h2 class="display-5 text-center">
-                    Impact and Commitment
-                </h2>
-                <div class="container p1">
-                    <p class="text-center">
-                        Every mission reflects our core values: excellence, humanity, and unrivaled care. Whether stabilizing a critically ill patient mid-flight or training the next generation of emergency responders, AMREF Flying Doctors is more than an air ambulance service—we are a lifeline. By supporting Amref Health Africa’s broader mission, we contribute to lasting health change, ensuring that quality care reaches even the farthest corners of the continent.
+    <hr class="section-divider" />
 
-                        For more information or to access our services, contact our 24-hour Control Centre at +254 206 992 000, +254 730 811 000, or +254 709 962 000. With AMREF Flying Doctors, help is always just a call away.
-                    </p>
+    <div class="container fade-in-section">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                <h2 class="section-title"><i class="fas fa-heartbeat"></i> Our Mission</h2>
+                <div class="section-content">
+                    <div class="highlight-card fade-in-section"><i class="fas fa-bullseye"></i>
+                        <div>
+                            <b>Rapid, reliable, and compassionate aeromedical services.</b><br>
+                            At the heart of AMREF Flying Doctors' operations is a commitment to providing rapid, reliable, and compassionate aeromedical services.
+                        </div>
+                    </div>
+                    <div class="highlight-card fade-in-section"><i class="fas fa-hands-helping"></i>
+                        <div>
+                            <b>Access for all.</b><br>
+                            We aim to ensure that no one is denied access to life-saving care due to distance, terrain, or circumstance.
+                        </div>
+                    </div>
+                    <div class="highlight-card fade-in-section"><i class="fas fa-leaf"></i>
+                        <div>
+                            <b>Reinvesting in Africa's health.</b><br>
+                            Any surplus generated from our operations is reinvested into Amref Health Africa's humanitarian initiatives, supporting sustainable health improvements across Africa.
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="container col-md-5">
-                <img class="img3" src="img/mika-baumeister-L5HtiRFs170-unsplash.jpg" alt="" />
+            <div class="col-lg-6 order-lg-1 fade-in-section">
+                <img class="about-img" src="img/customeserv.png" alt="AMREF Flying Doctors mission in action" />
             </div>
         </div>
     </div>
 
+    <hr class="section-divider" />
 
-    <!-- footer -->
+    <div class="container fade-in-section">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="section-title"><i class="fas fa-hands-holding-medical"></i> Impact and Commitment</h2>
+                <div class="section-content">
+                    <div class="highlight-card fade-in-section"><i class="fas fa-award"></i>
+                        <div>
+                            <b>Excellence, humanity, and unrivaled care.</b><br>
+                            Every mission reflects our core values: excellence, humanity, and unrivaled care. Whether stabilizing a critically ill patient mid-flight or training the next generation of emergency responders, AMREF Flying Doctors is more than an air ambulance service—we are a lifeline.
+                        </div>
+                    </div>
+                    <div class="highlight-card fade-in-section"><i class="fas fa-globe-africa"></i>
+                        <div>
+                            <b>Lasting health change.</b><br>
+                            By supporting Amref Health Africa’s broader mission, we contribute to lasting health change, ensuring that quality care reaches even the farthest corners of the continent.
+                        </div>
+                    </div>
+                    <div class="highlight-card fade-in-section"><i class="fas fa-phone-alt"></i>
+                        <div>
+                            <b>24-hour Control Centre.</b><br>
+                            For more information or to access our services, contact our 24-hour Control Centre at +254 206 992 000, +254 730 811 000, or +254 709 962 000. With AMREF Flying Doctors, help is always just a call away.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 fade-in-section">
+                <img class="about-img" src="img/mika-baumeister-L5HtiRFs170-unsplash.jpg" alt="AMREF Flying Doctors impact and commitment" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTopBtn" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
     <footer>
         <div class="content-f">
             <div class="left box-f">
@@ -119,10 +155,10 @@
                 <div class="lower">
                     <div class="topic">Contact us</div>
                     <div class="phone">
-                        <a href="#"><i class="fas fa-phone-volume"></i>+91 8074600457</a>
+                        <a href="#" aria-label="Call us"><i class="fas fa-phone-volume"></i>+91 8074600457</a>
                     </div>
                     <div class="email">
-                        <a href="#"><i class="fas fa-envelope"></i>Amref @gmail.com</a>
+                        <a href="#" aria-label="Email us"><i class="fas fa-envelope"></i>Amref @gmail.com</a>
                     </div>
                 </div>
             </div>
@@ -137,14 +173,14 @@
             <div class="right box-f">
                 <div class="topic">Subscribe us</div>
                 <form action="#">
-                    <input type="text" placeholder="Enter email address">
-                    <input type="submit" name="" value="Send">
+                    <input type="text" placeholder="Enter email address" aria-label="Enter email address">
+                    <input type="submit" name="" value="Send" class="btn btn-primary" aria-label="Subscribe">
                     <div class="media-icons">
-                        <a href="#" class="me-3"><img src="img/icons8-facebook.svg"></a>
-                        <a href="#" class="me-3"><img src="img/icons8-twitter.svg"></a>
-                        <a href="#" class="me-4"><img src="img/icons8-instagram.svg"></a>
-                        <a href="#" class="me-4"><img src="img/icons8-github.svg"></a>
-                        <a href="#" class="me-3"><img src="img/icons8-linkedin-circled.svg"></a>
+                        <a href="#" class="me-3" aria-label="Facebook"><img src="img/icons8-facebook.svg" alt="Facebook"></a>
+                        <a href="#" class="me-3" aria-label="Twitter"><img src="img/icons8-twitter.svg" alt="Twitter"></a>
+                        <a href="#" class="me-4" aria-label="Instagram"><img src="img/icons8-instagram.svg" alt="Instagram"></a>
+                        <a href="#" class="me-4" aria-label="Github"><img src="img/icons8-github.svg" alt="Github"></a>
+                        <a href="#" class="me-3" aria-label="LinkedIn"><img src="img/icons8-linkedin-circled.svg" alt="LinkedIn"></a>
                     </div>
                 </form>
             </div>
@@ -154,9 +190,35 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script>
+        // Fade-in on scroll for sections and highlight cards
+        function revealOnScroll() {
+            const sections = document.querySelectorAll('.fade-in-section');
+            const windowHeight = window.innerHeight;
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < windowHeight - 60) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('DOMContentLoaded', revealOnScroll);
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 300) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+        backToTopBtn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 
 </html>

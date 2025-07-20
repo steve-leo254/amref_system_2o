@@ -29,106 +29,142 @@ document.addEventListener('DOMContentLoaded', function () {
   const checkoutButton = document.getElementById('checkoutButton');
 
   // --- Mock Data (Replace with actual fetching if needed) ---
-  const doctorsData = {
-    "Cardiology": {
-      "Nairobi Hospital": [{ value: "cardio1", name: "Dr. James Mwangi" }],
-      "Aga Khan University Hospital": [{ value: "cardio2", name: "Dr. Susan Kamau" }],
-      "MP Shah Hospital": []
-    },
-    "Dermatology": {
-      "Nairobi Hospital": [],
-      "Aga Khan University Hospital": [],
-      "MP Shah Hospital": [{ value: "derm1", name: "Dr. Oscar  Ichungwa" }]
-    },
-    "General Practice": {
-      "Nairobi Hospital": [{ value: "gp1", name: "Dr. Genz Musyoks" }],
-      "Aga Khan University Hospital": [],
-      "MP Shah Hospital": []
-    },
-    "Pediatrics": {
-      "Nairobi Hospital": [{value:"pd1", name:"Dr Farruk Kaongo"}],
-      "Aga Khan University Hospital": [],
-      "MP Shah Hospital": []
+  // Always show these doctors
+  const doctorsList = [
+    { value: "lovette", name: "Lovette Kananu" },
+    { value: "steve", name: "Steve Leo" },
+    { value: "stella", name: "Stella Kanini" }
+  ];
+
+  // --- Calendar Initialization (Dynamic Month Grid) ---
+  let currentMonth = new Date().getMonth();
+  let currentYear = new Date().getFullYear();
+
+  function daysInMonth(month, year) {
+    return new Date(year, month + 1, 0).getDate();
+  }
+
+  function renderCalendar() {
+    const today = new Date();
+    const selectedDoctor = doctorSelect.value;
+    calWrap.innerHTML = '';
+    calendarLoading.textContent = '';
+
+    // Header
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const header = document.createElement('div');
+    header.className = 'text-center mb-2 fw-bold';
+    header.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+    calWrap.appendChild(header);
+
+    // Day names
+    const daysRow = document.createElement('div');
+    daysRow.className = 'd-flex justify-content-between mb-1';
+    ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach(day => {
+      const d = document.createElement('div');
+      d.className = 'text-muted small';
+      d.style.width = '2.2em';
+      d.textContent = day;
+      daysRow.appendChild(d);
+    });
+    calWrap.appendChild(daysRow);
+
+    // Dates grid
+    const grid = document.createElement('div');
+    grid.className = 'd-flex flex-wrap';
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    const numDays = daysInMonth(currentMonth, currentYear);
+    // Leading blanks
+    for (let i = 0; i < firstDay; i++) {
+      const blank = document.createElement('button');
+      blank.className = 'btn btn-light m-1 calendar-day disabled';
+      blank.disabled = true;
+      blank.style.width = '2.2em';
+      blank.style.height = '2.2em';
+      grid.appendChild(blank);
     }
-    // Add more specializations and hospitals
+    // Days
+    for (let d = 1; d <= numDays; d++) {
+      const dateObj = new Date(currentYear, currentMonth, d);
+      const dateStr = dateObj.toISOString().slice(0, 10);
+      const btn = document.createElement('button');
+      btn.className = 'btn btn-outline-primary m-1 calendar-day';
+      btn.textContent = d;
+      btn.setAttribute('data-date', dateStr);
+      btn.style.width = '2.2em';
+      btn.style.height = '2.2em';
+      // Disable past dates
+      if (dateObj < today.setHours(0,0,0,0)) {
+        btn.classList.add('disabled');
+        btn.disabled = true;
+      }
+      // Remove logic that disables days based on doctor/times
+      // Highlight selected
+      if (selectedDateInput.value === dateStr) {
+        btn.classList.add('selected', 'btn-success');
+        btn.classList.remove('btn-outline-primary');
+      }
+      grid.appendChild(btn);
+    }
+    calWrap.appendChild(grid);
+  }
+
+  // Calendar navigation
+  document.getElementById('calBack').onclick = function() {
+    if (currentMonth === 0) {
+      currentMonth = 11;
+      currentYear--;
+    } else {
+      currentMonth--;
+    }
+    renderCalendar();
+  };
+  document.getElementById('calNext').onclick = function() {
+    if (currentMonth === 11) {
+      currentMonth = 0;
+      currentYear++;
+    } else {
+      currentMonth++;
+    }
+    renderCalendar();
   };
 
-  const availableTimes = { // Mock available times (doctor/date specific)
-    "cardio1": { "2025-04-10": ["09:00", "11:00"], "2025-04-11": ["14:00"] },
-    "cardio2": { "2025-04-10": ["10:00"], "2025-04-12": ["09:00", "10:00", "15:00"] },
-    "derm1": { "2025-04-11": ["09:00", "14:00", "15:00", "16:00"] },
-    "gp1": { "2025-04-10": ["10:00", "11:00", "12:00"], "2025-04-11": ["16:00", "17:00"] },
-  }
+  // Calendar day click
+  calWrap.addEventListener('click', (event) => {
+    if (event.target.classList.contains('calendar-day') && !event.target.classList.contains('disabled')) {
+      const selectedDate = event.target.getAttribute('data-date');
+      selectedDateInput.value = selectedDate;
+      customDateDisplay.value = selectedDate;
+      customDateDisplay.classList.remove('is-invalid');
+      selectedDateInput.classList.remove('is-invalid');
+      dateErrorDiv.style.display = 'none';
+      // Deselect others
+      calWrap.querySelectorAll('.calendar-day.selected').forEach(el => el.classList.remove('selected', 'btn-success'));
+      calWrap.querySelectorAll('.calendar-day:not(.disabled)').forEach(el => el.classList.replace('btn-primary', 'btn-outline-primary'));
+      event.target.classList.add('selected', 'btn-success');
+      event.target.classList.remove('btn-outline-primary');
+      updateAvailableTimes();
+    }
+  });
 
-  // --- Calendar Initialization (Placeholder) ---
-  // ** IMPORTANT: Replace this with your ACTUAL calendar implementation **
-  // This basic placeholder just enables the date selection for validation testing
-  function initializePlaceholderCalendar() {
-    if (calendarLoading) calendarLoading.textContent = 'Please select a date.';
-    calWrap.innerHTML = `
-          <p class="text-muted small">Calendar Placeholder:</p>
-          <button type="button" class="btn btn-outline-primary btn-sm m-1 calendar-day" data-date="2025-04-10">Apr 10</button>
-          <button type="button" class="btn btn-outline-primary btn-sm m-1 calendar-day" data-date="2025-04-11">Apr 11</button>
-          <button type="button" class="btn btn-outline-primary btn-sm m-1 calendar-day" data-date="2025-04-12">Apr 12</button>
-          <button type="button" class="btn btn-outline-secondary btn-sm m-1 calendar-day disabled" data-date="2025-04-13">Apr 13</button>
-          `; // Add more dates or full calendar grid
+  // Re-render calendar when doctor changes
+  doctorSelect.addEventListener('change', renderCalendar);
 
-    calWrap.addEventListener('click', (event) => {
-      if (event.target.classList.contains('calendar-day') && !event.target.classList.contains('disabled')) {
-        const selectedDate = event.target.getAttribute('data-date');
-
-        // Update hidden input (critical for validation)
-        selectedDateInput.value = selectedDate;
-
-        // Update display input
-        customDateDisplay.value = selectedDate; // Format as needed
-
-        // Remove validation error class if present
-        customDateDisplay.classList.remove('is-invalid');
-        selectedDateInput.classList.remove('is-invalid'); // Target hidden input state too
-        dateErrorDiv.style.display = 'none'; // Hide error message
-
-        // Deselect other days visually (simple example)
-        calWrap.querySelectorAll('.calendar-day.selected').forEach(el => el.classList.remove('selected', 'btn-success'));
-        calWrap.querySelectorAll('.calendar-day:not(.disabled)').forEach(el => el.classList.replace('btn-primary', 'btn-outline-primary'));
-
-        // Select current day visually
-        event.target.classList.add('selected', 'btn-success');
-        event.target.classList.remove('btn-outline-primary');
-
-        // Trigger time slot update
-        updateAvailableTimes();
-      }
-    });
-  }
-  initializePlaceholderCalendar(); // Call the placeholder calendar setup
+  // Initial render
+  renderCalendar();
 
   // --- Helper Functions ---
 
   function populateDoctors() {
-    const spec = specializationSelect.value;
-    const hosp = hospitalSelect.value;
-    doctorSelect.innerHTML = '<option value="" selected disabled>-- Select Doctor --</option>'; // Reset
-    resetDoctorSelectionVisuals(); // Clear tick and validation
-    doctorSelect.disabled = true; // Disable until valid options load
-
-    if (spec && hosp && doctorsData[spec] && doctorsData[spec][hosp]) {
-      const doctors = doctorsData[spec][hosp];
-      if (doctors.length > 0) {
-        doctors.forEach(doc => {
-          const option = document.createElement('option');
-          option.value = doc.value;
-          option.textContent = doc.name;
-          doctorSelect.appendChild(option);
-        });
-        doctorSelect.disabled = false; // Enable the select
-      } else {
-        doctorSelect.innerHTML = '<option value="" selected disabled>-- No Doctors Available --</option>';
-      }
-    } else {
-      doctorSelect.innerHTML = '<option value="" selected disabled>-- Select Specialization/Hospital First --</option>';
-    }
-    // Also reset time slots when doctor list changes
+    doctorSelect.innerHTML = '<option value="" selected disabled>-- Select Doctor --</option>';
+    resetDoctorSelectionVisuals();
+    doctorsList.forEach(doc => {
+      const option = document.createElement('option');
+      option.value = doc.value;
+      option.textContent = doc.name;
+      doctorSelect.appendChild(option);
+    });
+    doctorSelect.disabled = false;
     resetTimeSelection();
   }
 
@@ -139,35 +175,20 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function updateAvailableTimes() {
-    const doctorId = doctorSelect.value;
-    const date = selectedDateInput.value;
-    resetTimeSelection(); // Clear previous times and errors
-
-    if (doctorId && date && availableTimes[doctorId] && availableTimes[doctorId][date]) {
-      const times = availableTimes[doctorId][date];
-      if (times.length > 0) {
-        times.forEach(time => {
-          const option = document.createElement('option');
-          option.value = time;
-          // Format time for display (e.g., 09:00 -> 09:00 AM)
-          const hour = parseInt(time.split(':')[0], 10);
-          const minute = time.split(':')[1];
-          const ampm = hour >= 12 ? 'PM' : 'AM';
-          const displayHour = hour % 12 === 0 ? 12 : hour % 12;
-          option.textContent = `${String(displayHour).padStart(2, '0')}:${minute} ${ampm}`;
-          timeSelect.appendChild(option);
-        });
-        timeSelect.disabled = false;
-        customTimeInput.disabled = false;
-        timeSlotErrorDiv.style.display = 'none'; // Hide error if times are loaded
-      } else {
-        timeSelect.innerHTML = '<option value="" selected disabled>-- No Slots Available --</option>';
-      }
-    } else {
-      timeSelect.innerHTML = '<option value="" selected disabled>-- Select Doctor/Date --</option>';
-      timeSelect.disabled = true;
-      customTimeInput.disabled = true;
+    resetTimeSelection();
+    // Always show 08:00 to 18:00 (every hour)
+    for (let hour = 8; hour <= 18; hour++) {
+      const time = `${hour.toString().padStart(2, '0')}:00`;
+      const option = document.createElement('option');
+      option.value = time;
+      const ampm = hour >= 12 ? 'PM' : 'AM';
+      const displayHour = hour % 12 === 0 ? 12 : hour % 12;
+      option.textContent = `${String(displayHour).padStart(2, '0')}:00 ${ampm}`;
+      timeSelect.appendChild(option);
     }
+    timeSelect.disabled = false;
+    customTimeInput.disabled = false;
+    timeSlotErrorDiv.style.display = 'none';
   }
 
   function resetTimeSelection() {
@@ -298,6 +319,8 @@ document.addEventListener('DOMContentLoaded', function () {
         time: timeSelect.value || customTimeInput.value // Get selected time
       };
       console.log("Form Data:", formData);
+      // Store in localStorage for checkout page
+      localStorage.setItem('pendingAppointment', JSON.stringify(formData));
 
       // Disable button to prevent double submission
       checkoutButton.disabled = true;
