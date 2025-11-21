@@ -157,8 +157,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         const html = `
-            <div class='text-center mb-3'><img src='img/amreflogo.png' alt='Amref Logo' style='width:50px;height:50px;'/></div>
-            <div class='receipt-header mb-2'>Amref Appointment Receipt</div>
+            <div class='text-center mb-3'><img src='img/Kiangombe  logo.png' alt='Kiangombe   Logo' style='width:50px;height:50px;'/></div>
+            <div class='receipt-header mb-2'>Kiangombe   Appointment Receipt</div>
             <hr/>
             <div class='receipt-label'>Patient Name:</div><div class='receipt-value mb-2'>${appt.patientName || ''}</div>
             <div class='receipt-label'>Email:</div><div class='receipt-value mb-2'>${appt.patientEmail || ''}</div>
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class='receipt-label'>Time:</div><div class='receipt-value mb-2'>${appt.time || ''}</div>
             <div class='receipt-label'>Reason:</div><div class='receipt-value mb-2'>${appt.reason || ''}</div>
             <hr/>
-            <div style='font-size:0.95em;color:#888;'>Thank you for booking with Amref. Please keep this receipt for your records.</div>
+            <div style='font-size:0.95em;color:#888;'>Thank you for booking with Kiangombe  . Please keep this receipt for your records.</div>
         `;
         receiptContentModal.innerHTML = html;
     });

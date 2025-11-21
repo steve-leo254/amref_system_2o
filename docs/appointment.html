@@ -4,21 +4,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Book Appointment | Amref</title>
+    <title>Book Appointment | Kiangombe  </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="website icon" type="image/png" href="img/amreflogo.png">
+    <link rel="website icon" type="image/png" href="img/Kiangombe  logo.png">
     <link rel="stylesheet" href="appointment.css">
 </head>
 
 <body>
     <!-- Modern Hospital-Blue Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-amref sticky-top" style="z-index:1050;">
+    <nav class="navbar navbar-expand-lg navbar-Kiangombe   sticky-top" style="z-index:1050;">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="./index.html">
-                <img src="img/amreflogo.png" alt="Amref Logo">
+                <img src="img/Kiangombe  logo.png" alt="Kiangombe   Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -41,8 +41,13 @@
     <section class="hero-banner mb-4">
         <div class="overlay"></div>
         <div class="content">
-            <h1>Book Your Appointment</h1>
-            <p>Schedule a visit with our top healthcare professionals. Choose your doctor, date, and time—all in one place.</p>
+            <p class="eyebrow text-uppercase mb-2">Kiangombe Dispensary Network</p>
+            <h1>Book a Kiangombe Health Center Appointment</h1>
+            <p>Reserve an outpatient visit, capture your symptoms, and help our clinicians prepare prescriptions and follow-up plans before you arrive.</p>
+            <div class="hero-cta">
+                <a href="#appointmentForm" class="btn btn-primary btn-lg">Start Booking</a>
+                <a href="./prescription.html" class="btn btn-outline-light btn-lg">Preview e-Prescription</a>
+            </div>
         </div>
     </section>
 
@@ -81,12 +86,12 @@
                             <div id="specializationError" class="invalid-feedback">Please select a specialization.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="hospital" class="form-label">Hospital / Clinic <span class="text-danger">*</span></label>
+                            <label for="hospital" class="form-label">Depertment  <span class="text-danger">*</span></label>
                             <select class="form-select" id="hospital" required aria-describedby="hospitalError">
                                 <option value="" selected disabled>-- Select Hospital/Clinic --</option>
-                                <option value="Nairobi Hospital">Nairobi Hospital</option>
-                                <option value="Aga Khan University Hospital">Aga Khan University Hospital</option>
-                                <option value="MP Shah Hospital">MP Shah Hospital</option>
+                                <option value="Nairobi Hospital">Dentist</option>
+                                <option value="Aga Khan University Hospital">Peditrician</option>
+                                <option value="MP Shah Hospital">Pysciatristit</option>
                             </select>
                             <div id="hospitalError" class="invalid-feedback">Please select a hospital or clinic.</div>
                         </div>
@@ -181,12 +186,60 @@
         </dialog>
     </main>
 
+    <section class="container py-5 appointment-insights">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="insight-card">
+                    <div class="icon-wrap"><i class="fas fa-clipboard-list"></i></div>
+                    <h5>Structured Intake</h5>
+                    <p>Your answers map to triage rules so urgent cases are prioritized and chronic reviews get the right slot length.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="insight-card">
+                    <div class="icon-wrap"><i class="fas fa-user-md"></i></div>
+                    <h5>Clinician Prep</h5>
+                    <p>Doctors see vitals, allergies, and last prescriptions before you step in, speeding up diagnosis and prescription drafting.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="insight-card">
+                    <div class="icon-wrap"><i class="fas fa-prescription-bottle-alt"></i></div>
+                    <h5>Prescription Handoff</h5>
+                    <p>After the visit, your encrypted prescription is shared with partner pharmacies for verification and fulfilment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row g-4 align-items-center prescription-cta">
+            <div class="col-lg-6">
+                <div class="cta-panel">
+                    <h3>Need to reference a previous prescription?</h3>
+                    <p>Use your prescription ID to pull a QR-verified copy, confirm what was dispensed, or share it with another provider.</p>
+                    <div class="d-flex flex-wrap gap-2 mt-3">
+                        <a href="./prescription.html" class="btn btn-light text-primary">Open Prescription Viewer</a>
+                        <a href="./dashboard.html" class="btn btn-outline-light">Provider Dashboard</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <ul class="cta-list">
+                    <li><i class="fas fa-sms"></i> SMS reminders go out 24 hours and 2 hours before your slot.</li>
+                    <li><i class="fas fa-qrcode"></i> Each visit can generate a QR-coded prescription if medication is required.</li>
+                    <li><i class="fas fa-users"></i> Caregivers can be added to notifications for pediatric and elderly patients.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <footer class="bg-dark text-light pt-5 pb-3 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase mb-3">About Us</h5>
-                    <p>Amref provides a comprehensive telemedicine platform designed to offer easy access to quality healthcare services from the comfort of your home.</p>
+                    <p>Kiangombe Health Center coordinates appointments, consultations, and prescription handoffs so patients spend less time waiting and more time healing.</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase mb-3">Our Services</h5>
@@ -205,7 +258,7 @@
                             <a href="tel:+254758510206" class="text-light text-decoration-none"><i class="fas fa-phone-volume me-2"></i>+254758510206</a>
                         </div>
                         <div class="email">
-                            <a href="mailto:Steveleo254@gmail.com" class="text-light text-decoration-none"><i class="fas fa-envelope me-2"></i>Steveleo254@gmail.com</a>
+                            <a href="mailto:Leosteve@kiambupoly.ac.ke" class="text-light text-decoration-none"><i class="fas fa-envelope me-2"></i>Leosteve@kiambupoly.ac.ke</a>
                         </div>
                     </address>
                     <form action="#" class="mb-3 needs-validation" novalidate>
@@ -226,7 +279,7 @@
                 </div>
             </div>
             <div class="text-center border-top border-secondary pt-3 mt-3">
-                <p>&copy; 2025 <a href="./index.html" class="text-light">Amref</a>. All rights reserved.</p>
+                <p>&copy; 2025 <a href="./index.html" class="text-light">Kiangombe  </a>. All rights reserved.</p>
             </div>
         </div>
     </footer>

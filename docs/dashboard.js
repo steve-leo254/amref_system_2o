@@ -714,7 +714,7 @@ getWeather();
     
     if (userNameEl) userNameEl.textContent = user.Name || "User";
     if (userEmailEl) userEmailEl.textContent = user.Email || loggedInEmail;
-    if (userAvatarEl) userAvatarEl.src = "img/amreflogo.png";
+    if (userAvatarEl) userAvatarEl.src = "img/Kiangombe  logo.png";
     profileCard.style.display = "block";
   } else if (profileCard) {
     profileCard.style.display = "none";

@@ -1,33 +1,115 @@
-/* General Page Styles */
-body {
-  background-color: #f8f9fa; /* Light grey background */
-  /* Ensure consistent font application if needed, overriding Bootstrap potentially */
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  padding-top: 70px; /* Add padding if using a fixed-top navbar to prevent overlap */
+:root {
+  --blue: #1976D2;
+  --green: #43A047;
+  --text-dark: #1f2a37;
+  --muted: #6b778d;
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --border: #e3f2fd;
 }
 
-/* Apply base font settings more broadly */
 * {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  box-sizing: border-box; /* Add box-sizing for consistency */
+  box-sizing: border-box;
 }
 
-/* Ensure container fills width appropriately */
+body {
+  background-color: var(--bg);
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: var(--text-dark);
+  padding-top: 70px;
+}
+
+.brand-navbar {
+  background: var(--blue);
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
+}
+
+.brand-navbar .navbar-brand span {
+  color: #fff;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+}
+
+.brand-navbar .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.35rem 0.95rem;
+}
+
+.brand-navbar .nav-link.active,
+.brand-navbar .nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.brand-navbar .btn {
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-banner {
+  position: relative;
+  background: url('https://images.unsplash.com/photo-1580281657525-4b7a44947ec8?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-bottom: 2.5rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.hero-banner .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(25, 118, 210, 0.85), rgba(46, 125, 50, 0.75));
+}
+
+.hero-banner .content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+}
+
+.hero-banner h1 {
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-banner p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+}
+
+.hero-banner .eyebrow {
+  letter-spacing: 0.4em;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.hero-cta {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .container.page {
-  max-width: 960px; /* Or your preferred max width for content */
+  max-width: 960px;
 }
 
-/* Prescription Card Layout */
 .prescription-card {
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: .375rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, .075);
-  padding: 2rem; /* Default padding */
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1.2rem;
+  margin: 2rem 0;
+  box-shadow: 0 12px 35px rgba(25, 118, 210, 0.08);
+  padding: 2rem;
 }
 
 .prescription-header,
@@ -35,35 +117,35 @@ body {
   text-align: center;
   margin-bottom: 1.5rem;
 }
+
 .prescription-header h2 {
-    font-weight: 400; /* Slightly bolder heading */
-}
-.prescription-footer p {
-    margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: var(--blue);
 }
 
 .prescription-section h5 {
-  font-size: 1.1rem; /* Slightly smaller section headings */
-  font-weight: 600; /* Bolder section headings */
-  color: #008893; /* Theme color */
-  margin-top: 1.5rem; /* Space above sections */
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-top: 1.5rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border);
   padding-bottom: 0.5rem;
 }
+
 .prescription-section p {
-    margin-bottom: 0.6rem; /* Consistent paragraph spacing */
-    line-height: 1.6;
-}
-.prescription-section p strong {
-    font-weight: 600; /* Make labels bold */
-    display: inline-block;
-    min-width: 120px; /* Align labels somewhat */
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
 }
 
-/* Medication List Styling */
+.prescription-section p strong {
+  display: inline-block;
+  min-width: 120px;
+  font-weight: 600;
+}
+
 .medication-item {
-  border-bottom: 1px dashed #eee;
+  border-bottom: 1px dashed var(--border);
   padding-bottom: 1rem;
   margin-bottom: 1rem;
 }
@@ -73,69 +155,109 @@ body {
   margin-bottom: 0;
   padding-bottom: 0;
 }
-.medication-item p {
-    margin-bottom: 0.3rem; /* Tighter spacing within med item */
-}
 
-/* Button Styles Override */
 .btn-primary,
 .btn-primary:hover,
 .btn-primary:active,
-.btn-primary:visited,
 .btn-primary:focus {
-  background-color: #008893 !important;
-  border-color: #008893 !important;
-  color: #fff !important; /* Ensure text is white */
-  box-shadow: none !important; /* Optional: remove focus shadow */
+  background-color: var(--blue) !important;
+  border-color: var(--blue) !important;
+  color: #fff !important;
+  border-radius: 999px;
+  font-weight: 600;
+  min-width: 220px;
 }
 
-/* Style for secondary print button */
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:active,
-.btn-secondary:visited,
-.btn-secondary:focus {
-    background-color: #6c757d !important;
-    border-color: #6c757d !important;
-    color: #fff !important;
-    box-shadow: none !important;
+.btn-secondary {
+  border-radius: 999px;
+  font-weight: 600;
 }
 
-/* Status Message Styling (Uses Bootstrap classes) */
 #statusMessage {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
-/* Navbar & Footer Styling (Assumed to be in global CSS or needs adding) */
-/* Example:
-.navbar { ... your consistent navbar styles ... }
-.footer-placeholder { ... your consistent footer styles ... }
-*/
+.verify-steps .verify-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1.2rem;
+  padding: 1.5rem;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(25, 118, 210, 0.08);
+  height: 100%;
+}
 
+.verify-card .icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(25, 118, 210, 0.1);
+  display: grid;
+  place-items: center;
+  color: var(--blue);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
 
-/* Print Specific Styles */
+.verify-card h5 {
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.verify-card p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.footer {
+  background: #1b1f24;
+}
+
+.footer h5 {
+  font-weight: 700;
+}
+
+.footer a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer a:hover {
+  color: var(--green);
+}
+
+@media (max-width: 991.98px) {
+  .hero-banner h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .hero-cta {
+    flex-direction: column;
+  }
+}
+
 @media print {
   body {
-    background-color: #fff !important; /* Ensure white background for printing */
-    padding-top: 0 !important; /* Remove padding */
-    font-size: 10pt; /* Adjust base font size for print */
+    background-color: #fff !important;
+    padding-top: 0 !important;
+    font-size: 10pt;
   }
 
-  /* Hide non-essential elements */
   .navbar,
-  .btn, /* Hides all buttons */
-  .footer-placeholder,
-  #statusMessage { /* Hide status messages */
+  .btn,
+  .hero-banner,
+  .verify-steps,
+  .footer,
+  #statusMessage {
     display: none !important;
   }
 
-  /* Adjust prescription card for printing */
   .prescription-card {
     border: none !important;
     box-shadow: none !important;
     margin: 0 !important;
     padding: 0 !important;
-    width: 100% !important;
   }
 
   .container.page {
@@ -143,16 +265,5 @@ body {
     padding: 0 !important;
     margin: 0 !important;
   }
-
-  /* Ensure links are not shown in print unless needed */
-  a[href]:after {
-     /* content: none !important; Optionally hide URL expansion */
-  }
-
-   /* Adjust heading sizes and margins for print */
-   .prescription-header h2 { font-size: 16pt; }
-   .prescription-section h5 { font-size: 12pt; margin-top: 1rem; }
-   p { font-size: 10pt; line-height: 1.4; }
-   hr { display: none; } /* Hide visual separators if not needed */
-
 }
+

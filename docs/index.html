@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amref | Hospital Management System</title>
+  <title>Kiangombe   | Hospital Management System</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="website icon" type="image/png" href="img/amreflogo.png" />
+  <link rel="website icon" type="image/png" href="img/Kiangombe  logo.png" />
   <link rel="stylesheet" href="landing.css" />
   <style>
     body { font-family: 'Montserrat', Arial, sans-serif; background: #f8f9fa; }
@@ -16,14 +16,27 @@
     .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .btn-primary, .btn-outline-success { border-radius: 2rem; font-weight: 600; }
     .hero-section { position: relative; background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat; min-height: 70vh; display: flex; align-items: center; color: #fff; }
-    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(25,118,210,0.8) 0%, rgba(67,160,71,0.7) 100%); z-index: 1; }
-    .hero-content { position: relative; z-index: 2; max-width: 600px; margin-left: 5vw; }
-    .hero-title { font-size: 2.8rem; font-weight: 700; }
-    .hero-desc { font-size: 1.3rem; margin: 1.5rem 0; }
-    .feature-card { border: none; border-radius: 1.5rem; box-shadow: 0 4px 24px rgba(25,118,210,0.08); transition: transform 0.2s, box-shadow 0.2s; }
-    .feature-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 8px 32px rgba(25,118,210,0.15); }
-    .feature-icon { font-size: 2.5rem; color: #1976D2; margin-bottom: 1rem; }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(25,118,210,0.88) 0%, rgba(46,125,50,0.75) 100%); z-index: 1; }
+    .hero-content { position: relative; z-index: 2; max-width: 640px; margin-left: 5vw; }
+    .hero-title { font-size: 3rem; font-weight: 700; }
+    .hero-desc { font-size: 1.25rem; margin: 1.5rem 0; }
+    .hero-badges span { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0.9rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.6); font-size: 0.9rem; margin-right: 0.5rem; margin-bottom: 0.4rem; }
+    .stats-section { background: #fff; border-radius: 1.5rem; box-shadow: 0 20px 80px rgba(25,118,210,0.08); margin-top: -70px; position: relative; z-index: 3; }
+    .stat-card { text-align: center; padding: 1.5rem 0.5rem; }
+    .stat-card h3 { font-size: 2rem; color: #1976D2; margin-bottom: 0.4rem; }
+    .stat-card p { margin-bottom: 0; color: #6c757d; font-weight: 600; letter-spacing: 0.02em; }
+    .feature-card, .module-card { border: none; border-radius: 1.5rem; box-shadow: 0 4px 24px rgba(25,118,210,0.08); transition: transform 0.2s, box-shadow 0.2s; }
+    .feature-card:hover, .module-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 8px 32px rgba(25,118,210,0.15); }
+    .feature-icon, .module-icon { font-size: 2.3rem; color: #1976D2; margin-bottom: 1rem; }
     .how-steps .step-icon { font-size: 2.2rem; color: #43A047; margin-bottom: 0.5rem; }
+    .workflow-card { border-radius: 1rem; border: 1px solid #e3f2fd; padding: 1.5rem; height: 100%; background: #fff; }
+    .workflow-card h6 { font-weight: 700; color: #1976D2; }
+    .workflow-line { width: 60px; height: 4px; background: linear-gradient(90deg,#1976D2,#43A047); border-radius: 999px; margin: 0.75rem auto; }
+    .prescription-section { background: #e8f5e9; border-radius: 1.5rem; padding: 2.5rem; }
+    .prescription-section ul { padding-left: 1.2rem; }
+    .prescription-section li { margin-bottom: 0.6rem; font-weight: 500; }
+    .cta-panel { background: linear-gradient(135deg,#1976D2,#43A047); border-radius: 1.5rem; padding: 2.5rem; color: #fff; text-align: center; box-shadow: 0 15px 45px rgba(25,118,210,0.25); }
+    .cta-panel .btn { border-radius: 999px; font-weight: 600; }
     .footer { background: #212529; color: #fff; padding: 3rem 0 1rem 0; }
     .footer a { color: #fff; opacity: 0.85; transition: opacity 0.2s; }
     .footer a:hover { opacity: 1; }
@@ -32,8 +45,10 @@
     .footer .btn { border-radius: 2rem; }
     .accordion-button:not(.collapsed) { color: #1976D2; background: #e3f2fd; }
     @media (max-width: 768px) {
-      .hero-title { font-size: 2rem; }
+      .hero-title { font-size: 2.2rem; }
       .hero-content { margin-left: 0; text-align: center; }
+      .stats-section { margin-top: 1rem; }
+      .prescription-section { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -42,8 +57,8 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background: transparent;">
     <div class="container-fluid">
       <a class="navbar-brand d-flex align-items-center" href="./index.html">
-        <img src="img/amreflogo.png" alt="Amref Logo" width="60" height="60" class="me-2" />
-        <span class="fw-bold fs-4" style="color:#1976D2;">Amref</span>
+        <img src="img/Kiangombe  logo.png" alt="Kiangombe   Logo" width="60" height="60" class="me-2" />
+        <span class="fw-bold fs-4" style="color:#1976D2;">Kiangombe  </span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -66,22 +81,60 @@
   <section class="hero-section d-flex align-items-center">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1 class="hero-title mb-3">Your Health, Our Priority</h1>
-      <p class="hero-desc">Access quality healthcare services, book appointments, and connect with top professionals—all from the comfort of your home.</p>
-      <a href="./appointment.html" class="btn btn-primary btn-lg shadow">Book an Appointment</a>
+      <div class="hero-badges mb-4">
+        <span><i class="fas fa-shield-heart"></i> Patient-first</span>
+        <span><i class="fas fa-tablet-screen-button"></i> Digital-first</span>
+        <span><i class="fas fa-kit-medical"></i> Pharmacy-ready</span>
+      </div>
+      <h1 class="hero-title mb-3">Kiangombe Health Center Appointment & Prescription Hub</h1>
+      <p class="hero-desc">Coordinate patient visits, capture consultations, and issue trackable prescriptions across Kiangombe Health Center. One secure workspace for patients, clinicians, triage teams, and partner pharmacies.</p>
+      <div class="d-flex flex-wrap gap-3">
+        <a href="./appointment.html" class="btn btn-primary btn-lg shadow">Book a Patient Visit</a>
+        <a href="./signup.html" class="btn btn-outline-light btn-lg">Provider Console Login</a>
+      </div>
     </div>
   </section>
-  <!-- Carousel Section: Amref Services, Team, Facilities -->
+
+  <!-- Snapshot Section -->
+  <section class="container stats-section py-4 px-3 px-md-5">
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <h3>15K+</h3>
+          <p>Appointments Managed</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <h3>2.4K</h3>
+          <p>Prescriptions Dispensed</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <h3>38</h3>
+          <p>Specialists Online</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <h3>4</h3>
+          <p>Partner Pharmacies</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Carousel Section: Kiangombe   Services, Team, Facilities -->
   <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" style="max-width:900px;margin:2.5rem auto 0 auto;box-shadow:0 4px 24px rgba(25,118,210,0.10);border-radius:1.5em;overflow:hidden;">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div style="height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f8f9fa;">
-          <img src="img/flying-doctors-01.png" class="d-block w-100 object-fit-cover" style="height:100%;width:100%;object-fit:cover;" alt="Description of Amref services or interface" />
+          <img src="img/flying-doctors-01.png" class="d-block w-100 object-fit-cover" style="height:100%;width:100%;object-fit:cover;" alt="Description of Kiangombe   services or interface" />
         </div>
       </div>
       <div class="carousel-item">
         <div style="height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f8f9fa;">
-          <img src="img/flyingdoct2.png" class="d-block w-100 object-fit-cover" style="height:100%;width:100%;object-fit:cover;" alt="Diverse team of Amref healthcare professionals" />
+          <img src="img/flyingdoct2.png" class="d-block w-100 object-fit-cover" style="height:100%;width:100%;object-fit:cover;" alt="Diverse team of Kiangombe   healthcare professionals" />
         </div>
       </div>
       <div class="carousel-item">
@@ -100,60 +153,115 @@
     </button>
   </div>
 
-  <!-- Features Section -->
+  <!-- Core Modules Section -->
   <section class="container py-5">
-    <div class="row text-center g-4">
+    <h2 class="text-center mb-5 fw-bold" style="color:#1976D2;">Built for Appointment & Prescription Teams</h2>
+    <div class="row g-4">
       <div class="col-md-4">
-        <div class="card feature-card h-100 p-4">
-          <div class="feature-icon mb-2"><i class="fas fa-user-md"></i></div>
-          <h5 class="fw-bold mb-2">Multi-Doctor & Hospital Support</h5>
-          <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=400&q=80" class="img-fluid rounded mb-3" alt="Group of doctors in a hospital hallway">
-          <p class="text-muted">Connect with a wide range of healthcare professionals and hospitals for comprehensive care, including real-time video consultations.</p>
+        <div class="card module-card h-100 p-4">
+          <div class="module-icon"><i class="fas fa-calendar-day"></i></div>
+          <h5 class="fw-bold mb-2">Patient Self-Service</h5>
+          <p class="text-muted mb-3">Smart triage questions, slot availability, and SMS/email reminders reduce missed visits and waiting room congestion.</p>
+          <ul class="text-muted ps-3">
+            <li>Chronic & emergency visit types</li>
+            <li>Automated confirmations</li>
+            <li>Multi-language guidance</li>
+          </ul>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card feature-card h-100 p-4">
-          <div class="feature-icon mb-2"><i class="fas fa-map-marker-alt"></i></div>
-          <h5 class="fw-bold mb-2">Nearby Hospitals & Pharmacies</h5>
-          <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" class="img-fluid rounded mb-3" alt="Map showing nearby hospitals and pharmacies">
-          <p class="text-muted">Easily locate the nearest hospitals and pharmacies using our integrated map feature for quick access to medical facilities.</p>
+        <div class="card module-card h-100 p-4">
+          <div class="module-icon"><i class="fas fa-user-nurse"></i></div>
+          <h5 class="fw-bold mb-2">Clinician Workspace</h5>
+          <p class="text-muted mb-3">Queue management, consultation notes, vitals, and next-steps built into one dashboard that syncs with the patient profile.</p>
+          <ul class="text-muted ps-3">
+            <li>SOAP note templates</li>
+            <li>Integrated teleconsults</li>
+            <li>Task routing to nurses</li>
+          </ul>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card feature-card h-100 p-4">
-          <div class="feature-icon mb-2"><i class="fas fa-shield-alt"></i></div>
-          <h5 class="fw-bold mb-2">HIPAA Compliance Verified</h5>
-          <img src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=400&q=80" class="img-fluid rounded mb-3" alt="HIPAA compliance seal or graphic">
-          <p class="text-muted">Your privacy is our priority. We use secure communication channels and access controls to protect your health information.</p>
+        <div class="card module-card h-100 p-4">
+          <div class="module-icon"><i class="fas fa-pills"></i></div>
+          <h5 class="fw-bold mb-2">Prescription Tracking</h5>
+          <p class="text-muted mb-3">Digitally issued prescriptions sync with partner pharmacies, flag drug interactions, and log refill adherence automatically.</p>
+          <ul class="text-muted ps-3">
+            <li>E-signature & QR validation</li>
+            <li>Stock visibility per pharmacy</li>
+            <li>Refill reminders to patients</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- How It Works Section -->
+  <!-- Appointment Workflow -->
   <section class="container py-5 how-steps">
-    <h2 class="text-center mb-5 fw-bold" style="color:#1976D2;">How It Works</h2>
-    <div class="row text-center g-4">
-      <div class="col-md-4">
-        <div class="p-4">
+    <h2 class="text-center mb-5 fw-bold" style="color:#1976D2;">Appointment Workflow</h2>
+    <div class="row g-4">
+      <div class="col-md-3 col-sm-6">
+        <div class="workflow-card text-center">
           <div class="step-icon mb-2"><i class="fas fa-user-plus"></i></div>
-          <h6 class="fw-bold">1. Create an Account</h6>
-          <p class="text-muted">Sign up and provide your medical history securely.</p>
+          <h6>1. Intake & Triage</h6>
+          <div class="workflow-line"></div>
+          <p class="text-muted">Patients fill out symptoms, vitals, and supporting files through the web portal or USSD assistant.</p>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="p-4">
+      <div class="col-md-3 col-sm-6">
+        <div class="workflow-card text-center">
           <div class="step-icon mb-2"><i class="fas fa-calendar-check"></i></div>
-          <h6 class="fw-bold">2. Book Appointment</h6>
-          <p class="text-muted">Choose your doctor and schedule a convenient time.</p>
+          <h6>2. Smart Scheduling</h6>
+          <div class="workflow-line"></div>
+          <p class="text-muted">Automated rules match visit types with available clinicians, rooms, and telehealth channels.</p>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="p-4">
-          <div class="step-icon mb-2"><i class="fas fa-video"></i></div>
-          <h6 class="fw-bold">3. Meet Online</h6>
-          <p class="text-muted">Join a secure video call and get professional advice.</p>
+      <div class="col-md-3 col-sm-6">
+        <div class="workflow-card text-center">
+          <div class="step-icon mb-2"><i class="fas fa-user-md"></i></div>
+          <h6>3. Consultation</h6>
+          <div class="workflow-line"></div>
+          <p class="text-muted">Doctors capture notes, order labs, and draft prescriptions while nurses update vitals in real time.</p>
         </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="workflow-card text-center">
+          <div class="step-icon mb-2"><i class="fas fa-prescription-bottle-medical"></i></div>
+          <h6>4. Fulfillment & Follow-up</h6>
+          <div class="workflow-line"></div>
+          <p class="text-muted">Digital prescriptions route to pharmacies, and follow-up reminders keep chronic patients adherent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prescription Tracking Spotlight -->
+  <section class="container py-5">
+    <div class="row align-items-center g-4 prescription-section">
+      <div class="col-md-6">
+        <h2 class="fw-bold mb-3" style="color:#2e7d32;">Prescription Tracking That Closes the Loop</h2>
+        <p class="text-muted mb-4">Each prescription carries a secure QR code referenced in the Kiangombe ledger. Pharmacies verify authenticity instantly, record dispensed quantities, and trigger patient notifications for pickups and refills.</p>
+        <ul>
+          <li>Interaction alerts across recorded allergies and active meds</li>
+          <li>Stock depletion warnings per pharmacy partner</li>
+          <li>Chronic disease refill plans with automated SMS nudges</li>
+          <li>Analytics exported to Kiambu County health dashboards</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <img src="https://images.unsplash.com/photo-1580281657525-4b7a44947ec8?auto=format&fit=crop&w=900&q=80" alt="Pharmacist reviewing digital prescriptions" class="img-fluid rounded-4 shadow">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Panel -->
+  <section class="container py-5">
+    <div class="cta-panel">
+      <h2 class="fw-bold mb-3">Ready to Streamline Kiangombe Patient Journeys?</h2>
+      <p class="mb-4">Activate the appointment and prescription suite for your department, onboard pharmacy partners, and keep patients informed at every step.</p>
+      <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+        <a href="./appointment.html" class="btn btn-light btn-lg text-primary">Launch Patient Portal</a>
+        <a href="mailto:Leosteve@kiambupoly.ac.ke" class="btn btn-outline-light btn-lg">Request Admin Demo</a>
       </div>
     </div>
   </section>
@@ -165,11 +273,11 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="faq1-heading">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
-            <i class="fas fa-lock me-2"></i> Is Amref secure?
+            <i class="fas fa-lock me-2"></i> Is Kiangombe   secure?
           </button>
         </h2>
         <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="faq1-heading" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">Yes, Amref website is secure and follows strict privacy laws and regulations. All communication is encrypted to protect patient privacy.</div>
+          <div class="accordion-body">Yes, Kiangombe   website is secure and follows strict privacy laws and regulations. All communication is encrypted to protect patient privacy.</div>
         </div>
       </div>
       <div class="accordion-item">
@@ -179,7 +287,7 @@
           </button>
         </h2>
         <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2-heading" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">Yes, you can use Amref even if you don't have health insurance. We offer affordable pricing and payment options for all patients.</div>
+          <div class="accordion-body">Yes, you can use Kiangombe   even if you don't have health insurance. We offer affordable pricing and payment options for all patients.</div>
         </div>
       </div>
       <div class="accordion-item">
@@ -195,7 +303,7 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="faq4-heading">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
-            <i class="fas fa-question-circle me-2"></i> How do I use Amref?
+            <i class="fas fa-question-circle me-2"></i> How do I use Kiangombe  ?
           </button>
         </h2>
         <div id="faq4" class="accordion-collapse collapse" aria-labelledby="faq4-heading" data-bs-parent="#faqAccordion">
@@ -209,7 +317,7 @@
           </button>
         </h2>
         <div id="faq5" class="accordion-collapse collapse" aria-labelledby="faq5-heading" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">Amref offers consultations, diagnosis, treatment, monitoring, and medication management through the platform.</div>
+          <div class="accordion-body">Kiangombe   offers consultations, diagnosis, treatment, monitoring, and medication management through the platform.</div>
         </div>
       </div>
       <div class="accordion-item">
@@ -231,10 +339,10 @@
       <div class="row">
         <div class="col-md-4 mb-4 mb-md-0">
           <h5 class="fw-bold mb-3">About Us</h5>
-          <p>Amref provides easy access to high-quality healthcare services from the comfort of your home.</p>
+          <p>Kiangombe   provides easy access to high-quality healthcare services from the comfort of your home.</p>
           <div class="mt-3">
             <a href="tel:+254758510206"><i class="fas fa-phone-volume me-2"></i>+254 7585810206</a><br>
-            <a href="mailto:Steveleo254@gmail.com"><i class="fas fa-envelope me-2"></i>Steveleo254@gmail.com</a>
+            <a href="mailto:Leosteve(kiambupoly.ac.ke) "><i class="fas fa-envelope me-2"></i>Leosteve(kiambupoly.ac.ke) </a>
           </div>
         </div>
         <div class="col-md-4 mb-4 mb-md-0">
@@ -263,7 +371,7 @@
         </div>
       </div>
       <div class="text-center mt-4">
-        <p class="mb-0">&copy; 2025 <a href="./index.html" class="fw-bold" style="color:#1976D2;">Amref</a> All rights reserved.</p>
+        <p class="mb-0">&copy; 2025 <a href="./index.html" class="fw-bold" style="color:#1976D2;">Kiangombe  </a> All rights reserved.</p>
       </div>
     </div>
   </footer>

@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="website icon" type="png" href="img/amreflogo.png">
+    <link rel="website icon" type="png" href="img/Kiangombe  logo.png">
     <link rel="stylesheet" href="aboutus.css">
     <style>
        
@@ -17,10 +17,11 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg sticky-top container-fluid" style="background-color: #f0fbfc;">
+    <nav class="navbar navbar-expand-lg brand-navbar sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.html" style="padding-left: 2%;">
-                <img src="img/amreflogo.png" alt="Amref Logo" width="100" height="100">
+            <a class="navbar-brand d-flex align-items-center" href="./index.html">
+                <img src="img/Kiangombe  logo.png" alt="Kiangombe   Logo" width="72" height="72" class="me-2">
+                <span class="fw-bold text-uppercase tracking-wide">Kiangombe Center</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -28,23 +29,27 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
-                    <li class="nav-item mx-3">
-                        <a class="nav-link fs-4" aria-current="page" href="./index.html">Home</a>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center" id="navLinks">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" aria-current="page" href="./index.html">Home</a>
                     </li>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link fs-4" href="./diet.html">Diet</a>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="./appointment.html">Appointments</a>
                     </li>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link fs-4" href="./aboutus.html">About us</a>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="./prescription.html">Prescriptions</a>
                     </li>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link fs-4" href="./signup.html">Log-out</a>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" href="./aboutus.html">About</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="./map.html">Nearby Care</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search" action="./appointment.html">
-                    <button class="btn btn-outline-success btn-lg" type="submit" aria-label="Book an appointment">Book now</button>
-                </form>
+                <div class="d-flex ms-lg-3 flex-wrap gap-2">
+                    <a class="btn btn-outline-light" href="./signup.html" aria-label="Provider login">Provider Console</a>
+                    <a class="btn btn-success" href="./appointment.html" aria-label="Book an appointment">Book Visit</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -53,93 +58,179 @@
     <section class="hero-banner mb-4">
         <div class="overlay"></div>
         <div class="content">
-            <h1>About Amref Flying Doctors</h1>
-            <p>Delivering lifesaving care from the skies for over 65 years. Bridging the gap between remote communities and advanced medical care across Africa.</p>
+            <p class="eyebrow text-uppercase mb-2">Kiangombe Dispensary Network</p>
+            <h1>Coordinated Appointments & Prescriptions for Every Household</h1>
+            <p>We are the digital backbone of Kiangombe Health Center—linking community intake, clinician workflows, and last-mile pharmacies so patients receive timely care and trusted medication plans.</p>
+            <div class="hero-cta">
+                <a href="./appointment.html" class="btn btn-primary btn-lg">Schedule a Visit</a>
+                <a href="./prescription.html" class="btn btn-outline-light btn-lg">View e-Prescription</a>
+            </div>
         </div>
     </section>
 
-    <div class="container fade-in-section">
-        <div class="row align-items-center mb-5">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <h2 class="section-title"><i class="fas fa-plane-departure"></i> AMREF Flying Doctors: Lifesaving Care from the Skies</h2>
-                <div class="section-content">
-                    <p>
-                        AMREF Flying Doctors is Africa's premier provider of fixed-wing air ambulance services, delivering critical medical evacuation and healthcare solutions across the continent and beyond. Based at Wilson Airport in Nairobi, Kenya, this renowned organization has been a beacon of hope for over 65 years, bridging the gap between remote communities and advanced medical care.<br><br>
-                        <b>As a vital arm of Amref Health Africa, the largest health development non-governmental organization on the continent, AMREF Flying Doctors combines cutting-edge aviation technology with world-class medical expertise to save lives in even the most challenging environments.</b>
-                    </p>
+    <section class="container stats-grid fade-in-section">
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <p class="label">Monthly Visits</p>
+                    <h3>1,250+</h3>
+                    <small>Outpatient encounters managed digitally</small>
                 </div>
             </div>
-            <div class="col-lg-6 fade-in-section">
-                <img class="about-img" src="img/inside-amref.png" alt="AMREF Flying Doctors air ambulance team" />
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <p class="label">Prescription Accuracy</p>
+                    <h3>99%</h3>
+                    <small>QR validated scripts dispensed</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <p class="label">Pharmacy Partners</p>
+                    <h3>4</h3>
+                    <small>Stock visibility & refill syncing</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <p class="label">Community Reach</p>
+                    <h3>18</h3>
+                    <small>Villages supported via CHVs</small>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <hr class="section-divider" />
-
-    <div class="container fade-in-section">
-        <div class="row align-items-center mb-5">
-            <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
-                <h2 class="section-title"><i class="fas fa-heartbeat"></i> Our Mission</h2>
+    <section class="container py-5 fade-in-section">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+                <h2 class="section-title"><i class="fas fa-house-medical"></i> Why the Kiangombe Dispensary Platform Exists</h2>
                 <div class="section-content">
-                    <div class="highlight-card fade-in-section"><i class="fas fa-bullseye"></i>
+                    <p>The Kiangombe Health Center Dispensary blends on-site clinicians with a digital-first workflow. By capturing appointments, triage insights, vitals, and prescription decisions in one place, we shorten queues, reduce stock-outs, and keep families updated through SMS.</p>
+                    <ul class="checklist">
+                        <li><i class="fas fa-check-circle"></i> Seamless intake from USSD, walk-ins, and CHV outreach</li>
+                        <li><i class="fas fa-check-circle"></i> Single longitudinal record for every patient</li>
+                        <li><i class="fas fa-check-circle"></i> Automated reminders for reviews, labs, and refills</li>
+                        <li><i class="fas fa-check-circle"></i> Analytics that feed county reporting templates</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img class="about-img large" src="img/about_hero_5.jpg" alt="Kiangombe Dispensary team collaborating" />
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5 fade-in-section">
+        <h2 class="section-title text-center mb-4"><i class="fas fa-diagram-project"></i> Four Pillars of Coordinated Care</h2>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="pillar-card">
+                    <div class="icon-wrap"><i class="fas fa-calendar-check"></i></div>
+                    <h5>Smart Scheduling</h5>
+                    <p>Visit templates, triage tags, and colored queues keep the waiting bay flowing while flagging emergencies.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="pillar-card">
+                    <div class="icon-wrap"><i class="fas fa-user-md"></i></div>
+                    <h5>Clinical Workspace</h5>
+                    <p>SOAP notes, vitals, and lab requests sit beside previous visits so clinicians can act quickly.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="pillar-card">
+                    <div class="icon-wrap"><i class="fas fa-prescription-bottle-medical"></i></div>
+                    <h5>Prescription Tracking</h5>
+                    <p>QR validated scripts, drug interaction alerts, and stock balances per pharmacy outlet.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="pillar-card">
+                    <div class="icon-wrap"><i class="fas fa-people-roof"></i></div>
+                    <h5>Community Follow-up</h5>
+                    <p>CHV dashboards map households due for check-ins, vaccinations, and chronic disease reviews.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5 fade-in-section">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-6">
+                <h2 class="section-title"><i class="fas fa-route"></i> The Appointment-to-Prescription Journey</h2>
+                <div class="journey-grid">
+                    <div class="journey-card">
+                        <span class="step">01</span>
+                        <h6>Patient Intake</h6>
+                        <p>Symptoms, vitals, and past meds captured via portal, CHV tablets, or front desk kiosks.</p>
+                    </div>
+                    <div class="journey-card">
+                        <span class="step">02</span>
+                        <h6>Consult & Decide</h6>
+                        <p>Clinicians review longitudinal data, issue care plans, and trigger labs or imaging.</p>
+                    </div>
+                    <div class="journey-card">
+                        <span class="step">03</span>
+                        <h6>Prescription Issued</h6>
+                        <p>Digital scripts sign with verified PINs, embed QR codes, and sync to pharmacy stock.</p>
+                    </div>
+                    <div class="journey-card">
+                        <span class="step">04</span>
+                        <h6>Fulfil & Remind</h6>
+                        <p>Patients receive SMS pickup alerts, while refill reminders keep chronic cases adherent.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img class="about-img large" src="img/about_vision.png" alt="Team planning patient journeys" />
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5 fade-in-section">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-5">
+                <div class="callout-card">
+                    <h4>Community Pharmacies Onboarded</h4>
+                    <p>Each pharmacy partner scans the QR code, confirms dosage instructions, and updates the ledger so clinicians see exactly what was dispensed.</p>
+                    <ul class="callout-list">
+                        <li><i class="fas fa-store"></i> Kiangombe Central Pharmacy</li>
+                        <li><i class="fas fa-store"></i> Mukuyu Outreach Dispensary</li>
+                        <li><i class="fas fa-store"></i> Kirinyaga Junction Chemist</li>
+                        <li><i class="fas fa-store"></i> Kiangombe CHV Backpack Program</li>
+                    </ul>
+                    <a href="./prescription.html" class="btn btn-primary mt-3">See Sample Prescription</a>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="impact-panel">
+                    <h4>Impact Highlights</h4>
+                    <div class="impact-item">
+                        <i class="fas fa-clock"></i>
                         <div>
-                            <b>Rapid, reliable, and compassionate aeromedical services.</b><br>
-                            At the heart of AMREF Flying Doctors' operations is a commitment to providing rapid, reliable, and compassionate aeromedical services.
+                            <h6>32% Reduction in Queue Time</h6>
+                            <p>Real-time appointment load balancing between clinicians and triage nurses.</p>
                         </div>
                     </div>
-                    <div class="highlight-card fade-in-section"><i class="fas fa-hands-helping"></i>
+                    <div class="impact-item">
+                        <i class="fas fa-pills"></i>
                         <div>
-                            <b>Access for all.</b><br>
-                            We aim to ensure that no one is denied access to life-saving care due to distance, terrain, or circumstance.
+                            <h6>Zero Counterfeit Scripts</h6>
+                            <p>QR validation plus PIN confirmation for every pharmacy handover.</p>
                         </div>
                     </div>
-                    <div class="highlight-card fade-in-section"><i class="fas fa-leaf"></i>
+                    <div class="impact-item">
+                        <i class="fas fa-mobile-screen-button"></i>
                         <div>
-                            <b>Reinvesting in Africa's health.</b><br>
-                            Any surplus generated from our operations is reinvested into Amref Health Africa's humanitarian initiatives, supporting sustainable health improvements across Africa.
+                            <h6>2,000 SMS Nudges Monthly</h6>
+                            <p>Reminders for chronic refills, vaccination days, and maternity reviews.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 order-lg-1 fade-in-section">
-                <img class="about-img" src="img/customeserv.png" alt="AMREF Flying Doctors mission in action" />
-            </div>
         </div>
-    </div>
-
-    <hr class="section-divider" />
-
-    <div class="container fade-in-section">
-        <div class="row align-items-center mb-5">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <h2 class="section-title"><i class="fas fa-hands-holding-medical"></i> Impact and Commitment</h2>
-                <div class="section-content">
-                    <div class="highlight-card fade-in-section"><i class="fas fa-award"></i>
-                        <div>
-                            <b>Excellence, humanity, and unrivaled care.</b><br>
-                            Every mission reflects our core values: excellence, humanity, and unrivaled care. Whether stabilizing a critically ill patient mid-flight or training the next generation of emergency responders, AMREF Flying Doctors is more than an air ambulance service—we are a lifeline.
-                        </div>
-                    </div>
-                    <div class="highlight-card fade-in-section"><i class="fas fa-globe-africa"></i>
-                        <div>
-                            <b>Lasting health change.</b><br>
-                            By supporting Amref Health Africa’s broader mission, we contribute to lasting health change, ensuring that quality care reaches even the farthest corners of the continent.
-                        </div>
-                    </div>
-                    <div class="highlight-card fade-in-section"><i class="fas fa-phone-alt"></i>
-                        <div>
-                            <b>24-hour Control Centre.</b><br>
-                            For more information or to access our services, contact our 24-hour Control Centre at +254 206 992 000, +254 730 811 000, or +254 709 962 000. With AMREF Flying Doctors, help is always just a call away.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 fade-in-section">
-                <img class="about-img" src="img/mika-baumeister-L5HtiRFs170-unsplash.jpg" alt="AMREF Flying Doctors impact and commitment" />
-            </div>
-        </div>
-    </div>
+    </section>
 
     <!-- Back to Top Button -->
     <button id="backToTopBtn" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
@@ -148,33 +239,32 @@
         <div class="content-f">
             <div class="left box-f">
                 <div class="upper">
-                    <div class="topic">About us</div>
-                    <p>Amref has a thorough telemedicine website created to give consumers easy access to high-quality
-                        healtcare services from the convenience of their homes.</p>
+                    <div class="topic">About Kiangombe Center</div>
+                    <p>We are a community-first dispensary digitizing appointments, consultations, and prescriptions so every household can access timely, trusted care.</p>
                 </div>
                 <div class="lower">
                     <div class="topic">Contact us</div>
                     <div class="phone">
-                        <a href="#" aria-label="Call us"><i class="fas fa-phone-volume"></i>+91 8074600457</a>
+                        <a href="tel:+254758510206" aria-label="Call us"><i class="fas fa-phone-volume"></i>+254 758 510 206</a>
                     </div>
                     <div class="email">
-                        <a href="#" aria-label="Email us"><i class="fas fa-envelope"></i>Amref @gmail.com</a>
+                        <a href="mailto:Leosteve@kiambupoly.ac.ke" aria-label="Email us"><i class="fas fa-envelope"></i>Leosteve@kiambupoly.ac.ke</a>
                     </div>
                 </div>
             </div>
             <div class="middle box-f">
-                <div class="topic">Our Services</div>
-                <div><a href="./diet.html">DIET</a></div>
-                <div><a href="./aboutus.html">About Us</a></div>
-                <div><a href="#">Nearby Pharmas</a></div>
-                <div><a href="./map.html"> Nearby Hospitals</a></div>
+                <div class="topic">Quick Links</div>
+                <div><a href="./appointment.html">Book Appointment</a></div>
+                <div><a href="./prescription.html">Prescription Demo</a></div>
+                <div><a href="./map.html">Nearby Facilities</a></div>
+                <div><a href="./diet.html">Diet Library</a></div>
                 <div><a href="./index.html#faq">FAQ's</a></div>
             </div>
             <div class="right box-f">
-                <div class="topic">Subscribe us</div>
+                <div class="topic">Stay Updated</div>
                 <form action="#">
                     <input type="text" placeholder="Enter email address" aria-label="Enter email address">
-                    <input type="submit" name="" value="Send" class="btn btn-primary" aria-label="Subscribe">
+                    <input type="submit" value="Send" class="btn btn-primary" aria-label="Subscribe">
                     <div class="media-icons">
                         <a href="#" class="me-3" aria-label="Facebook"><img src="img/icons8-facebook.svg" alt="Facebook"></a>
                         <a href="#" class="me-3" aria-label="Twitter"><img src="img/icons8-twitter.svg" alt="Twitter"></a>
@@ -186,7 +276,7 @@
             </div>
         </div>
         <div class="bottom-f mt-4">
-            <p>Copyright © 2023 <a href="./index.html">Amref </a> All rights reserved</p>
+            <p>Copyright © 2025 <a href="./index.html">Kiangombe Center</a> All rights reserved</p>
         </div>
     </footer>
 

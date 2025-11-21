@@ -2,7 +2,7 @@
 
 :root {
   --hospital-blue: #1976D2;
-  --amref-red: #D32F2F;
+  --kiangombe-red: #D32F2F;
   --accent-green: #43A047;
   --soft-gray: #f8f9fa;
   --footer-dark: #212529;
@@ -45,8 +45,8 @@ body {
   border-color: var(--hospital-blue) !important;
 }
 .btn-primary:hover {
-  background: var(--amref-red) !important;
-  border-color: var(--amref-red) !important;
+  background: var(--kiangombe-red) !important;
+  border-color: var(--kiangombe-red) !important;
 }
 .btn-outline-success {
   background: var(--accent-green) !important;
@@ -54,8 +54,8 @@ body {
   color: #fff !important;
 }
 .btn-outline-success:hover {
-  background: var(--amref-red) !important;
-  border-color: var(--amref-red) !important;
+  background: var(--kiangombe-red) !important;
+  border-color: var(--kiangombe-red) !important;
 }
 
 /* Hero Section */
@@ -197,7 +197,7 @@ body {
   transition: color 0.2s;
 }
 .footer .social-icons a:hover {
-  color: var(--amref-red);
+  color: var(--kiangombe-red);
 }
 .footer .form-control {
   border-radius: 2rem;
@@ -216,7 +216,7 @@ body {
   font-weight: 600;
 }
 .footer .btn:hover {
-  background: var(--amref-red);
+  background: var(--Kiangombe  -red);
 }
 .footer ul {
   padding-left: 0;

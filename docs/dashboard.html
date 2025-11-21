@@ -4,13 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Amref Health Dashboard</title>
+    <title>Kiangombe   Health Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="website icon" type="image/png" href="img/Kiangombe  logo.png" />
 </head>
 
 <body>
@@ -127,18 +128,78 @@
                 <div class="action-card" onclick="bookAppointment()">
                     <div class="action-icon"><i class="fas fa-calendar-plus"></i></div>
                     <div class="action-title">Book Appointment</div>
+                    <p class="action-desc">Reserve a slot and capture patient symptoms before arrival.</p>
                 </div>
                 <div class="action-card" onclick="viewPrescriptions()">
-                    <div class="action-icon"><i class="fas fa-prescription"></i></div>
-                    <div class="action-title">View Prescriptions</div>
+                    <div class="action-icon"><i class="fas fa-prescription-bottle-alt"></i></div>
+                    <div class="action-title">Issue Prescription</div>
+                    <p class="action-desc">Create a QR-coded script and share it with partner pharmacies.</p>
                 </div>
                 <div class="action-card" onclick="healthRecords()">
                     <div class="action-icon"><i class="fas fa-file-medical"></i></div>
-                    <div class="action-title">Health Records</div>
+                    <div class="action-title">Clinical Notes</div>
+                    <p class="action-desc">Update SOAP notes, vitals, and next steps in one view.</p>
                 </div>
                 <div class="action-card" onclick="findDoctors()">
                     <div class="action-icon"><i class="fas fa-user-md"></i></div>
-                    <div class="action-title">Find Doctors</div>
+                    <div class="action-title">Provider Roster</div>
+                    <p class="action-desc">See who is online, on-call, or out in the field.</p>
+                </div>
+            </div>
+
+            <!-- Care Snapshot -->
+            <div class="care-snapshot animate-fade-in-up" style="animation-delay: 0.55s;">
+                <div class="snapshot-card">
+                    <div class="snapshot-label">Next Patient</div>
+                    <h4>Mary Wanjiku</h4>
+                    <p>08:30 AM · Chronic Disease Review</p>
+                    <div class="chip chip-warning"><i class="fas fa-clock me-2"></i>Awaiting vitals</div>
+                </div>
+                <div class="snapshot-card">
+                    <div class="snapshot-label">Primary Clinician</div>
+                    <h4>Dr. Stella Kanini</h4>
+                    <p>Exam room 2 · Pharmacy approvals enabled</p>
+                    <div class="chip chip-success"><i class="fas fa-check-circle me-2"></i>Ready for consult</div>
+                </div>
+                <div class="snapshot-card">
+                    <div class="snapshot-label">Active Care Plan</div>
+                    <h4>Diabetes Coaching Cohort</h4>
+                    <p>23 patients · 5 overdue follow-ups</p>
+                    <button class="btn btn-outline-primary btn-sm mt-2">View Cohort</button>
+                </div>
+            </div>
+
+            <!-- Care Journey -->
+            <div class="care-journey animate-fade-in-up" style="animation-delay: 0.6s;">
+                <div class="section-title">
+                    <i class="fas fa-route text-success"></i>
+                    Today's Appointment Journey
+                </div>
+                <div class="journey-steps">
+                    <div class="journey-card active">
+                        <div class="step-index">1</div>
+                        <h6>Intake & Triage</h6>
+                        <p>4 patients checked-in · 1 awaiting vitals.</p>
+                        <span class="badge bg-success-subtle text-success"><i class="fas fa-circle me-1"></i>In progress</span>
+                    </div>
+                    <div class="journey-card">
+                        <div class="step-index">2</div>
+                        <h6>Consultation</h6>
+                        <p>Dr. Kanini · Dr. Leo · PA Mercy</p>
+                        <span class="badge bg-primary-subtle text-primary">3 consults live</span>
+                    </div>
+                    <div class="journey-card">
+                        <div class="step-index">3</div>
+                        <h6>Prescription</h6>
+                        <p>2 scripts pending pharmacist review.</p>
+                        <span class="badge bg-warning-subtle text-warning">Action needed</span>
+                    </div>
+                    <div class="journey-card">
+                        <div class="step-index">4</div>
+                        <h6>Pharmacy & Follow-up</h6>
+                        <p>Refills triggered: 6 · SMS reminders sent.</p>
+                        <span class="badge bg-info-subtle text-info">Automated</span>
+                    </div>
                 </div>
             </div>
 
@@ -146,10 +207,109 @@
             <div class="health-tips animate-fade-in-up" style="animation-delay: 0.6s;">
                 <div class="section-title">
                     <i class="fas fa-lightbulb text-warning"></i>
-                    Daily Health Tip
+                    Kiangombe Care Tip
                 </div>
                 <div class="tip-content">
-                    <div id="healthTipText">Stay hydrated! Drink at least 8 glasses of water daily to maintain optimal health.</div>
+                    <div id="healthTipText">90% of our missed appointments happen when SMS reminders aren't confirmed. Tap “Remind patient” inside the appointment list as soon as you add a booking.</div>
+                </div>
+            </div>
+
+            <!-- Care Insights -->
+            <div class="row g-4 care-insights">
+                <div class="col-xl-7">
+                    <div class="card-block prescription-tracker animate-fade-in-up" style="animation-delay: 0.65s;">
+                        <div class="section-title">
+                            <i class="fas fa-pills text-primary"></i>
+                            Prescription Tracking
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Rx ID</th>
+                                        <th>Medication</th>
+                                        <th>Pharmacy</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#RX-2043</td>
+                                        <td>Metformin 500mg</td>
+                                        <td>Kiangombe Central</td>
+                                        <td><span class="status-pill success">Ready for pickup</span></td>
+                                        <td><button class="btn btn-link btn-sm">Share QR</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#RX-2044</td>
+                                        <td>Amoxicillin 250mg</td>
+                                        <td>Mukuyu Outreach</td>
+                                        <td><span class="status-pill warning">Awaiting stock</span></td>
+                                        <td><button class="btn btn-link btn-sm">Notify patient</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#RX-2045</td>
+                                        <td>Insulin Glargine</td>
+                                        <td>CHV backpack</td>
+                                        <td><span class="status-pill info">CHV en route</span></td>
+                                        <td><button class="btn btn-link btn-sm">Track</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5">
+                    <div class="card-block pharmacy-card animate-fade-in-up" style="animation-delay: 0.7s;">
+                        <div class="section-title">
+                            <i class="fas fa-store text-success"></i>
+                            Pharmacy Fulfilment
+                        </div>
+                        <ul class="pharmacy-list">
+                            <li>
+                                <div>
+                                    <strong>Kiangombe Central</strong>
+                                    <p>12 scripts today · 3 ready</p>
+                                </div>
+                                <span class="badge bg-success-subtle text-success">Online</span>
+                            </li>
+                            <li>
+                                <div>
+                                    <strong>Mukuyu Outreach</strong>
+                                    <p>Mobile clinic drop-off at 2 PM</p>
+                                </div>
+                                <span class="badge bg-warning-subtle text-warning">Limited stock</span>
+                            </li>
+                            <li>
+                                <div>
+                                    <strong>Kirinyaga Junction</strong>
+                                    <p>Syncing evening refills</p>
+                                </div>
+                                <span class="badge bg-info-subtle text-info">Syncing</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-block tasks-card animate-fade-in-up" style="animation-delay: 0.75s;">
+                        <div class="section-title">
+                            <i class="fas fa-clipboard-check text-danger"></i>
+                            Tasks & Alerts
+                        </div>
+                        <ul class="task-list">
+                            <li>
+                                <span><i class="fas fa-bell text-warning me-2"></i>Confirm refill for David Kariuki</span>
+                                <button class="btn btn-link btn-sm">Mark done</button>
+                            </li>
+                            <li>
+                                <span><i class="fas fa-syringe text-primary me-2"></i>Lab results for ANC-302 ready</span>
+                                <button class="btn btn-link btn-sm">Review</button>
+                            </li>
+                            <li>
+                                <span><i class="fas fa-user-nurse text-success me-2"></i>Assign CHV follow-up (diabetes)</span>
+                                <button class="btn btn-link btn-sm">Assign</button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
